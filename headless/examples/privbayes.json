@@ -1,0 +1,146 @@
+{
+ "mode": "directed",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "S",
+   "x": 130,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected"
+  },
+  {
+   "id": 2,
+   "name": "X1",
+   "x": 330,
+   "y": 140,
+   "type": "cat",
+   "card": 6,
+   "shape": "skewed",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 3,
+   "name": "X2",
+   "x": 330,
+   "y": 440,
+   "type": "cat",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible"
+  },
+  {
+   "id": 4,
+   "name": "X3",
+   "x": 560,
+   "y": 210,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 50,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 5,
+   "name": "Y",
+   "x": 760,
+   "y": 360,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "outcome"
+  }
+ ],
+ "edges": [
+  {
+   "id": 6,
+   "a": 1,
+   "b": 2,
+   "kind": "dir",
+   "strength": 0.4,
+   "sign": 1
+  },
+  {
+   "id": 7,
+   "a": 1,
+   "b": 3,
+   "kind": "dir",
+   "strength": 0.25,
+   "sign": 1
+  },
+  {
+   "id": 8,
+   "a": 2,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 9,
+   "a": 3,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.2,
+   "sign": 1
+  },
+  {
+   "id": 10,
+   "a": 3,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 11,
+   "a": 4,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  }
+ ],
+ "nextId": 12
+}

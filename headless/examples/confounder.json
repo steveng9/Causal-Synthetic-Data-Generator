@@ -1,0 +1,112 @@
+{
+ "mode": "directed",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "U",
+   "x": 450,
+   "y": 110,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden"
+  },
+  {
+   "id": 2,
+   "name": "S",
+   "x": 200,
+   "y": 300,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected"
+  },
+  {
+   "id": 3,
+   "name": "A",
+   "x": 450,
+   "y": 450,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 10,
+   "integer": false,
+   "role": "admissible"
+  },
+  {
+   "id": 4,
+   "name": "Y",
+   "x": 700,
+   "y": 300,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "outcome"
+  }
+ ],
+ "edges": [
+  {
+   "id": 5,
+   "a": 1,
+   "b": 2,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1
+  },
+  {
+   "id": 6,
+   "a": 1,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 7,
+   "a": 2,
+   "b": 3,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 8,
+   "a": 3,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1
+  }
+ ],
+ "nextId": 9
+}

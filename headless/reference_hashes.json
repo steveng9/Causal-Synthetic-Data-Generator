@@ -1,0 +1,590 @@
+[
+ {
+  "example": "confounder",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "9237d703c21826475a43fb0533b8b65e72804043a9e9329affedc90c9d380399"
+ },
+ {
+  "example": "confounder",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "681c0901482b94cc723f31aaf96665894060006027fa9024141998391cfc8e96"
+ },
+ {
+  "example": "confounder",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "f114d9ad131538c1a9cc3ed5b54181b2daf06414dffbae4d2afd5618b611fd19"
+ },
+ {
+  "example": "confounder",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "9ea4364643bcb994a49ed6f617f359886ae3ba90349dd131f03400d8c503b68e"
+ },
+ {
+  "example": "ds:acsincome_ca",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "f67885e37323ecb3acc34d33c3d5ffd807b40890c46d4aa7f53fd84ef70c8b5f"
+ },
+ {
+  "example": "ds:acsincome_ca",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "99fdd4f545d3afa43c52fefafaeb622316d632a9b21327db2527c3089db3003f"
+ },
+ {
+  "example": "ds:acsincome_ca",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "0ec47865e8fc388b9bd9ccd846c70af0fbd3d0890efe72330896e68d8bab1bd9"
+ },
+ {
+  "example": "ds:acsincome_ca",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "3d71f7a6164740445f9d726f7e2e51bc266b8fd996e043ccf670e157d05a13ad"
+ },
+ {
+  "example": "ds:acsincome_tx",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "05bf9dc76a654fa3e66e7b463f9f5820764cc2eb783674480884ee31e490e4e4"
+ },
+ {
+  "example": "ds:acsincome_tx",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "7f8dacef53b65784f6709a5d92c76ec7de994e6744aef33c2c92ff8b0faee63d"
+ },
+ {
+  "example": "ds:acsincome_tx",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "05996538de5c0c07aa4c43bd0d816ace5fcb1d8d76026da2c3db01805c525d08"
+ },
+ {
+  "example": "ds:acsincome_tx",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "23a25470f08d9766bbed12e6b2c67463773ef14e575c5dd41d162cf22aa50aea"
+ },
+ {
+  "example": "ds:acspubcov_ca",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "e033abece9718edbedb77422a6154d43748b6c4cf29ac7a264b4c2519476c409"
+ },
+ {
+  "example": "ds:acspubcov_ca",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "880b99107dfc44a0dac57434204715c6c7938a945ad0d8641688aa63a5c2e338"
+ },
+ {
+  "example": "ds:acspubcov_ca",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "38826fdae7ee4217c17723fe77f1c66dc465bfcfc36753833dcf4924ffbb8836"
+ },
+ {
+  "example": "ds:acspubcov_ca",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "8fc8740c43bf0541f7aecc4dec21c37d1f17b96eaa07ea2f88a33aacffabf16d"
+ },
+ {
+  "example": "ds:acspubcov_tx",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "cb77c1cd493f5856abf27f89cb3c515f8fcec9e36c87ac1edd1bdabd3a74a67c"
+ },
+ {
+  "example": "ds:acspubcov_tx",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "f9e3981f69b0a3e8653ff50efaaec5cd3ccfc0db26beff04f59f002a3e2daca1"
+ },
+ {
+  "example": "ds:acspubcov_tx",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "7d5560ffb97fbad8950b7dca713883e2f5c721a74da0ee89b06ce68d04a032ba"
+ },
+ {
+  "example": "ds:acspubcov_tx",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "bc99879c2850c83071f894f4477ac8063807ebe3357ca8f64f144eb6970af882"
+ },
+ {
+  "example": "ds:adult",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "3ff67a078961ee41516fb782060ca9cc939ab213fc9b0d40a68184f1c81ec4ef"
+ },
+ {
+  "example": "ds:adult",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "a3b408f633e2860f50d732ef7c95c9e8501df0c7db9d3af23eafa334a1d1ba94"
+ },
+ {
+  "example": "ds:adult",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "2ca1d0b49b0326f5157e033d5eed51c164878b735e0464f41511bed6f793e09e"
+ },
+ {
+  "example": "ds:adult",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "7ca28f09f116ebf2388cbd6a169d3295dfb88c9e43c895eea5901f88878c858b"
+ },
+ {
+  "example": "ds:cdc_diabetes",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "5e7a503f9d570106a4d7fc7d1a2459313b12401989e3aa199c48e840a8b6e031"
+ },
+ {
+  "example": "ds:cdc_diabetes",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "3ebd3b69434c30b32a4ac6ee749c89c9ef29a5312b9ec183a99ca3cba76de32b"
+ },
+ {
+  "example": "ds:cdc_diabetes",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "0d3ad2ed2a2d6c5abc154e03123efd8cedcde2ebfd0d10adce01e1d606a23fba"
+ },
+ {
+  "example": "ds:cdc_diabetes",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "ff603c90335bdb65a5dd3d1663d3685da18ce255c6b87402a2db7e7aa61087b0"
+ },
+ {
+  "example": "ds:compas",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "0deafaf039b1b43070ca548d9738b89a3032d3cf9ca96b00c43eb5341e475ff3"
+ },
+ {
+  "example": "ds:compas",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "fe3caaeb3894436cc744f388b7c6847b5eb91bfd5ca906d4bbeee07492a1fad9"
+ },
+ {
+  "example": "ds:compas",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "3adbedd6b40e704ea4cc92bbc9db02cb16a22e8456a47a98996207034a5dfb78"
+ },
+ {
+  "example": "ds:compas",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "2d0e7a48f6dff80190e0dedc5bc4208d1d4110576258ae14b27bac004b9462a4"
+ },
+ {
+  "example": "ds:hmda_ca",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "24f0a4a54786a533e41e672c9fd4f519d2a8f2f12b1a04dfcaae9928393131c8"
+ },
+ {
+  "example": "ds:hmda_ca",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "912b9e0b31f323409bd7548266856b0f31bc2f7849416ba1380aa4328919583e"
+ },
+ {
+  "example": "ds:hmda_ca",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "c0f330a75c7bc3dd5dd37dc9a4f731e09a593dd849c1e1505713b2301ebd174d"
+ },
+ {
+  "example": "ds:hmda_ca",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "50d8d399d32e1d95a9e57013e6549b9602ad6337a99993605aee1889cec6f1d4"
+ },
+ {
+  "example": "ds:hmda_tx",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "ae36c2aed849b75cacd01f791581c3f1384d723e1906a5f21637630ba8caee94"
+ },
+ {
+  "example": "ds:hmda_tx",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "d15d38c6b89f9a7e4c2aea4ae9ed0d52db75f07f4261ad8b25d0e1e2dc15144e"
+ },
+ {
+  "example": "ds:hmda_tx",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "a3f7f5b9e1cb01c4a92f0bb2653dc00e85aa24a59b79625b7bb3fe714f787fa1"
+ },
+ {
+  "example": "ds:hmda_tx",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "9ee12872fd4f70fd7aa94bc4c6fddf075d86ba5d6af276afd85b38af88d01d8f"
+ },
+ {
+  "example": "ds:sbo",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "5b8ee4bdc9919d2aa82de3981d896a5950e4a0a4a49cc4797085ca914f249334"
+ },
+ {
+  "example": "ds:sbo",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "9a87d1db7e11e62da864f50d1dd7388affb24a68aea192c2e9a48e3187e1b5b9"
+ },
+ {
+  "example": "ds:sbo",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "caf95694ec08a9f92a01e647fe09d9155f0d7fb44f625c749f5c9bd06bd16a25"
+ },
+ {
+  "example": "ds:sbo",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "97ebea129c3aaf3547a054ad317f4195aa40831089b096e577162a8d47b35551"
+ },
+ {
+  "example": "ds:snake",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "5fa68231e627ed085898b185a7e8e516c2974d1d4a7c1d827e83782ad43c083a"
+ },
+ {
+  "example": "ds:snake",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "440025ae771a896403ce07d4d7348ba344262936be30516da6df32795ed5dcfc"
+ },
+ {
+  "example": "ds:snake",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "56f3dca807b405433f55dda5e35fdeee3f1de59f06bbe46349962566199a066b"
+ },
+ {
+  "example": "ds:snake",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "6965a7b8c83171a66efb790d4eb313a3d3b902f550cc090927b597993241b324"
+ },
+ {
+  "example": "few_clusters",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "bcfc49151c611004df710bce062ee549e7c4245b09b095a8965608d2e07445cd"
+ },
+ {
+  "example": "few_clusters",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "6bca26ed8de7535d4eaf5f43ac600dda7ca3aa52ba7959eb8166e0a98278ec6b"
+ },
+ {
+  "example": "few_clusters",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "56c712eba1de775f8c4a49d052697d210cadb0f8899b3f1abd4552eb645492c9"
+ },
+ {
+  "example": "few_clusters",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "f9cf1756a33189411f3b2bd8a33b9ffc060e3634a798306a49d32d12a50e506a"
+ },
+ {
+  "example": "few_shapes",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "7c809c448f5084135c3fefaf7941822929a03d00687e2348c1b95d6ff9418719"
+ },
+ {
+  "example": "few_shapes",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "0f9d8cfdef8cd032a16e0ceeeecf96748a0c594e85b4a5acb5dcda368a332a0e"
+ },
+ {
+  "example": "few_shapes",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "2d1d9ae67181d4db4015bb2bcb871c8436794ab84e6812027659952b00d2e5eb"
+ },
+ {
+  "example": "few_shapes",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "4da83ec95f91740d21bddb8ed3d80150ca55fa2f90b60d3b9c8f63229281fd15"
+ },
+ {
+  "example": "hiring",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "63d93164539b8dc71655689a21864652c12be49ee896fe0438d5e1a724d3d921"
+ },
+ {
+  "example": "hiring",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "8198e0345788324539755b8092c76ab679e7dee86ebfb0135bda8700a3f61b54"
+ },
+ {
+  "example": "hiring",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "0cfe37c3fd522e96fc961b5862062cf71e0e30d7ca3fa524f0b787e61b4b2e17"
+ },
+ {
+  "example": "hiring",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "2d87aa53a134c7f1b025cd747fa7dc18fd8e9146050bca83dd5ca63ded05cad4"
+ },
+ {
+  "example": "independent",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "2024b0b41a2a3bc62d61f4a0dd1e099f630b2442a24f599e3f563108ea215d2e"
+ },
+ {
+  "example": "independent",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "9f9901d1cecac8d3fe02891c1018081255e6bf00a7bd65969265c2f014b7e7c7"
+ },
+ {
+  "example": "independent",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "381b6a93fb4f75d75c4e34b937a3559ae29991b6122ea4a8f514e7537142acf5"
+ },
+ {
+  "example": "independent",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "059cac6c07aab6ce08de53328ca9f362d14caec6bf1b94fec69bc350e3edceca"
+ },
+ {
+  "example": "intersect",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "b2f6b440aed3037c38cb7f6d6d241ae94748a7361bbc07cc5000cd016cab7a3c"
+ },
+ {
+  "example": "intersect",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "c223db52c4d06ec76f630f669ead22d68238c6a25932b5565e7806fd9d7fe9df"
+ },
+ {
+  "example": "intersect",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "ed6032079f586688d07213c2d8c80fbf1fa2fa77ac17d2d8038029c5d21261b0"
+ },
+ {
+  "example": "intersect",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "5dee4b0cdbcb20edfeb4645cba84f6cbfba909fb0a6598591f8f1537e41268ee"
+ },
+ {
+  "example": "mst",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "cbe76598d04c5050d4fa8bdef8f452bd07041ce573bd138ceba1c1df8813c28d"
+ },
+ {
+  "example": "mst",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "5e771990ce70dbf9cf62211c5c9b7c500b3a3fe6b215df13142954cf9c247a1f"
+ },
+ {
+  "example": "mst",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "2488e59f8905dfaad0b6f02a91d1babb6a509a442965cf29e4ed1f1d0a833e66"
+ },
+ {
+  "example": "mst",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "8157bd62c76a60db619cf504054589de402473e9b11e4af697794d4237c6eb52"
+ },
+ {
+  "example": "privbayes",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "635ebc45fac7e70b0096ba90fb451a45df2fe38f54b5b917fd8d487ec91827a0"
+ },
+ {
+  "example": "privbayes",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "11542f1681a7d94ef2dd4803ca5d9673e0d67fb24b3313c0ef07358f576795c9"
+ },
+ {
+  "example": "privbayes",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "b9c25a8ed2d0f1c0a30d0ee11362c4cdf54d5749d0fa7dc0eeb0d9f053bba003"
+ },
+ {
+  "example": "privbayes",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "e27e64ba0f32103ddaf1da3481df1c7735a8ca0ed0c4631b668a7d3d0378765a"
+ },
+ {
+  "example": "sc_marrow",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "eeeddf1284fc821b34979330bbf8362af50a68741eec9ecc495d827d0b9c2c93"
+ },
+ {
+  "example": "sc_marrow",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "8f1add5da36743f68321d6bfc5834946d7c361904e6dcb677b4c499b2ea33be4"
+ },
+ {
+  "example": "sc_marrow",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "61416780807b3e5f6d95e4fb61c9c079ece7a14e82b8f4e7a142a43fdc765421"
+ },
+ {
+  "example": "sc_marrow",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "942c9208d49f309f81f6b2f5837b99197fca134343ec1e89a70778ecf78b5e09"
+ },
+ {
+  "example": "sc_pbmc",
+  "rows": 300,
+  "seed": 11,
+  "cut": "cf",
+  "sha256": "d4ba1079796dbd52e49137f7a17b66f6d9f3f0adcdcf1f99b06a4e4350689658"
+ },
+ {
+  "example": "sc_pbmc",
+  "rows": 300,
+  "seed": 5,
+  "cut": "dp",
+  "sha256": "a49a1549b6317a682b1c9e7306b3e6597ce4decdc664192ea1713926d3647fbc"
+ },
+ {
+  "example": "sc_pbmc",
+  "rows": 300,
+  "seed": 8,
+  "cut": "ftu",
+  "sha256": "b620a73bf9739dc0d2942ee438c32b12716bc890ff0b09d43e4203e1aa632108"
+ },
+ {
+  "example": "sc_pbmc",
+  "rows": 400,
+  "seed": 3,
+  "cut": null,
+  "sha256": "f011a35386758363b2ce8f18c1d41d8c8cb55249f5eb2257db9736724cffec68"
+ }
+]

@@ -35,12 +35,12 @@ This page removes the guesswork. You write the graph yourself, so the true struc
 | **Save CSV** | Downloads the generated table. Hidden nodes are left out, the way they would be missing from a real dataset. |
 | **Save graph / Load graph** | A JSON file with the full graph, plus the edges each fairness rule cuts, so you can reproduce a table or hand the graph to other code. |
 
-The page also remembers your last graph in the browser's local storage.
+The page also remembers your last graph in the browser's local storage. A link can open the page on an example: `?example=few_clusters&rows=2000&seed=3` (the example keys are listed by `python headless/csdg.py list`).
 
 ### Drawing the graph
 
 - Double-click the paper (or press **Add node**) to add a node. A new node copies the settings of the node you added last (type, role, cardinality, distribution), so a run of similar columns takes one setup.
-- Drag from a node's **+** handle (or Shift-drag the node) onto another node to connect them. **New edges** sets whether the new edge is directed or undirected.
+- Drag from a node's **+** handle (or Shift-drag the node) onto another node to connect them. **New edges** sets whether the new edge is directed or undirected. A new edge starts at the strength of the edge you added last (0.3 for the first one).
 - Click a node or edge to edit it in the inspector on the left. Delete removes it, Esc deselects.
 
 **Node settings.** Each node has a name, a type and a role.
@@ -87,6 +87,8 @@ With **Apply to sample** ticked, the table is regenerated with the cut edges rem
 | **Bayesian net (PrivBayes-style, k=2)** | A directed network in which no node has more than 2 parents. |
 | **Intersection** | Race affects hiring only for one gender, so each attribute looks almost fair on its own, while one combination is treated worse. |
 | **No edges / Blank paper** | Starting points. |
+| **Six cell groups from 7 nodes** | Two hidden labels (`type` with 3 levels, `state` with 2) and 5 columns, joined by 7 edges with a strength above 0. Most edges switch on, off or flip with the other label, and that alone splits the UMAP into two large blobs, a cloud between them, a separate island and a small satellite. Color by `type` or `state` to see which hidden label makes which group. |
+| **Loops and tails from 9 nodes** | The same idea with 4 types and 7 columns, three of them two-humped (bimodal). The UMAP shows rings, beads and tails in which the hidden types are mixed but still readable, a bit like cell types in a real single-cell map. |
 | **Blood cells, PBMC-like (41 genes)** | A single-cell-style table: 41 gene columns, all cell labels hidden. Five cell types (T, NK, B, monocyte, dendritic) shift the genes. Subtypes act only inside one type (T-cell states, naive vs memory B, classical vs non-classical monocytes), plus a cycling program, an interferon gradient, sequencing depth and a weak donor batch. Open **Embedding → UMAP** and color by `cell_type`, `t_state` or `donor`. |
 | **Bone marrow with differentiation (74 genes)** | A larger single-cell-style table. Progenitors mature along a hidden `maturity` score and commit to an erythroid, myeloid or lymphoid fate. Stromal, endothelial and plasma cells form their own islands. A stress program (mitochondrial genes) and donor batch genes add noise, and 12 genes carry almost no signal. |
 
@@ -114,6 +116,31 @@ python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
 The page loads two things from the web: Google Fonts, and `umap-js` 1.4.0 from jsDelivr for the UMAP embedding. Without a network connection it falls back to system fonts, and everything except UMAP works.
+
+## Batch runs without a browser
+
+`headless/csdg.py` samples a graph from the command line or from Python. For the same graph, rows, seed and cut it writes the same CSV as the page, byte for byte. It needs only numpy.
+
+```sh
+cd headless
+python csdg.py list                                         # the built-in examples
+python csdg.py sample sc_pbmc few_shapes --rows 5000 --seeds 1-20 --out runs/
+python csdg.py sample my_graph.json --cut cf --seeds 1,2,3 --hidden --out runs/
+python csdg.py cuts hiring                                  # edges each fairness cut removes
+```
+
+A graph is an example key, or a file saved with **Save graph**. Each run writes one CSV per graph and seed (`<graph>[_<cut>]_seed<k>.csv`). It also writes a `<graph>_manifest.json` with the roles, category labels, the edges each cut removes and the full graph. `--hidden` adds the hidden columns, for experiments that need the true confounder. Twenty tables of 5,000 rows from the 74-gene example take about 3 seconds.
+
+From Python:
+
+```python
+import csdg
+g = csdg.load_graph('few_clusters')            # or a saved graph file, or a dict
+cols, data = csdg.sample(g, rows=5000, seed=1, cut=None, hidden=True)
+df = csdg.to_dataframe(cols, data)             # needs pandas
+```
+
+`python check.py` confirms the match: it samples 84 tables (every example, with no cut and with each of the three cuts) and compares them with hashes of the page's own output. After you change the sampler or an example in `index.html`, run `python export_from_page.py` (needs `gjs` or `node`). It runs the page's code without a browser and rewrites `examples/` and the hashes.
 
 ## Deploying on GitHub Pages
 

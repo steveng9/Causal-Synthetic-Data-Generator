@@ -1,0 +1,117 @@
+{
+ "mode": "directed",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "gender",
+   "x": 150,
+   "y": 150,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected"
+  },
+  {
+   "id": 2,
+   "name": "race",
+   "x": 150,
+   "y": 430,
+   "type": "cat",
+   "card": 2,
+   "shape": "skewed",
+   "skew": 0.3,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected"
+  },
+  {
+   "id": 3,
+   "name": "skill",
+   "x": 450,
+   "y": 480,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 100,
+   "integer": false,
+   "role": "admissible"
+  },
+  {
+   "id": 4,
+   "name": "hired",
+   "x": 730,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.7, 0.3",
+   "ordinal": true,
+   "pos": 1,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "outcome"
+  }
+ ],
+ "edges": [
+  {
+   "id": 6,
+   "a": 1,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 5,
+   "a": 2,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 7,
+   "a": 3,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1
+  },
+  {
+   "id": 8,
+   "a": 2,
+   "b": 3,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": -1
+  }
+ ],
+ "nextId": 9
+}

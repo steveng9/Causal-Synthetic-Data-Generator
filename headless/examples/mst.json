@@ -1,0 +1,138 @@
+{
+ "mode": "undirected",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "S",
+   "x": 140,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected"
+  },
+  {
+   "id": 2,
+   "name": "A",
+   "x": 360,
+   "y": 170,
+   "type": "cat",
+   "card": 6,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible"
+  },
+  {
+   "id": 3,
+   "name": "B",
+   "x": 380,
+   "y": 430,
+   "type": "cat",
+   "card": 30,
+   "shape": "skewed",
+   "skew": 0.35,
+   "weights": "",
+   "ordinal": false,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 4,
+   "name": "Y",
+   "x": 600,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "outcome"
+  },
+  {
+   "id": 5,
+   "name": "C",
+   "x": 800,
+   "y": 290,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "bimodal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other"
+  }
+ ],
+ "edges": [
+  {
+   "id": 6,
+   "a": 1,
+   "b": 2,
+   "kind": "und",
+   "strength": 0.45,
+   "sign": 1
+  },
+  {
+   "id": 7,
+   "a": 2,
+   "b": 3,
+   "kind": "und",
+   "strength": 0.4,
+   "sign": 1
+  },
+  {
+   "id": 8,
+   "a": 2,
+   "b": 4,
+   "kind": "und",
+   "strength": 0.4,
+   "sign": 1
+  },
+  {
+   "id": 9,
+   "a": 3,
+   "b": 4,
+   "kind": "und",
+   "strength": 0.35,
+   "sign": 1
+  },
+  {
+   "id": 10,
+   "a": 4,
+   "b": 5,
+   "kind": "und",
+   "strength": 0.3,
+   "sign": 1
+  }
+ ],
+ "nextId": 11
+}

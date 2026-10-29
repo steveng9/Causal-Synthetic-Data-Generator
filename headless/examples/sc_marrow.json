@@ -1,0 +1,3312 @@
+{
+ "mode": "directed",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "population",
+   "x": 60,
+   "y": 48,
+   "type": "cat",
+   "card": 3,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.17, 0.76, 0.07",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden",
+   "labels": [
+    "Niche cell",
+    "Blood-forming",
+    "Plasma cell"
+   ]
+  },
+  {
+   "id": 2,
+   "name": "niche_type",
+   "x": 157.5,
+   "y": 48,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.55, 0.45",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden",
+   "labels": [
+    "Stromal",
+    "Endothelial"
+   ]
+  },
+  {
+   "id": 3,
+   "name": "fate",
+   "x": 255,
+   "y": 48,
+   "type": "cat",
+   "card": 3,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.38, 0.34, 0.28",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden",
+   "labels": [
+    "Erythroid",
+    "Myeloid",
+    "Lymphoid"
+   ]
+  },
+  {
+   "id": 4,
+   "name": "maturity",
+   "x": 352.5,
+   "y": 48,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden"
+  },
+  {
+   "id": 5,
+   "name": "stage",
+   "x": 450,
+   "y": 48,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.45, 0.55",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden",
+   "labels": [
+    "Early",
+    "Committed"
+   ]
+  },
+  {
+   "id": 6,
+   "name": "cycling",
+   "x": 547.5,
+   "y": 48,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.85, 0.15",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden",
+   "labels": [
+    "Resting",
+    "Cycling"
+   ]
+  },
+  {
+   "id": 7,
+   "name": "stress",
+   "x": 645,
+   "y": 48,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden"
+  },
+  {
+   "id": 8,
+   "name": "seq_depth",
+   "x": 742.5,
+   "y": 48,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden"
+  },
+  {
+   "id": 9,
+   "name": "donor",
+   "x": 840,
+   "y": 48,
+   "type": "cat",
+   "card": 8,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "hidden",
+   "labels": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8"
+   ]
+  },
+  {
+   "id": 11,
+   "name": "CXCL12",
+   "x": 36,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 14,
+   "name": "LEPR",
+   "x": 116,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 17,
+   "name": "COL1A1",
+   "x": 196,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 20,
+   "name": "VCAM1",
+   "x": 276,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 23,
+   "name": "PTPRC",
+   "x": 356,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 26,
+   "name": "PECAM1",
+   "x": 436,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 30,
+   "name": "CDH5",
+   "x": 516,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 34,
+   "name": "VWF",
+   "x": 596,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 38,
+   "name": "KDR",
+   "x": 676,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 42,
+   "name": "LUM",
+   "x": 756,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 46,
+   "name": "DCN",
+   "x": 836,
+   "y": 140,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 50,
+   "name": "JCHAIN",
+   "x": 64,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 53,
+   "name": "MZB1",
+   "x": 144,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 56,
+   "name": "SDC1",
+   "x": 224,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 59,
+   "name": "XBP1",
+   "x": 304,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 62,
+   "name": "CD34",
+   "x": 384,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 65,
+   "name": "SPINK2",
+   "x": 464,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 68,
+   "name": "AVP",
+   "x": 544,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 72,
+   "name": "HLF",
+   "x": 624,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 76,
+   "name": "MECOM",
+   "x": 704,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 80,
+   "name": "HBB",
+   "x": 784,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 85,
+   "name": "HBA1",
+   "x": 864,
+   "y": 206.66666666666669,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 90,
+   "name": "GATA1",
+   "x": 36,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 95,
+   "name": "KLF1",
+   "x": 116,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 100,
+   "name": "CA1",
+   "x": 196,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 105,
+   "name": "ALAS2",
+   "x": 276,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 110,
+   "name": "MPO",
+   "x": 356,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 115,
+   "name": "ELANE",
+   "x": 436,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 120,
+   "name": "AZU1",
+   "x": 516,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 125,
+   "name": "LYZ",
+   "x": 596,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 130,
+   "name": "CEBPA",
+   "x": 676,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 135,
+   "name": "S100A9",
+   "x": 756,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 140,
+   "name": "DNTT",
+   "x": 836,
+   "y": 273.33333333333337,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 145,
+   "name": "VPREB1",
+   "x": 64,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 150,
+   "name": "IGLL1",
+   "x": 144,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 155,
+   "name": "CD79A",
+   "x": 224,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 160,
+   "name": "EBF1",
+   "x": 304,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 165,
+   "name": "PAX5",
+   "x": 384,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 170,
+   "name": "MKI67",
+   "x": 464,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 174,
+   "name": "TOP2A",
+   "x": 544,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 178,
+   "name": "CENPF",
+   "x": 624,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 182,
+   "name": "TUBB",
+   "x": 704,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 186,
+   "name": "HMGB2",
+   "x": 784,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 190,
+   "name": "MT-CO1",
+   "x": 864,
+   "y": 340,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 193,
+   "name": "MT-ND3",
+   "x": 36,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 196,
+   "name": "MT-ATP6",
+   "x": 116,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 199,
+   "name": "HSPA1A",
+   "x": 196,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 202,
+   "name": "FOS",
+   "x": 276,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 205,
+   "name": "JUN",
+   "x": 356,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 208,
+   "name": "MALAT1",
+   "x": 436,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 211,
+   "name": "RPL13",
+   "x": 516,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 214,
+   "name": "RPS27",
+   "x": 596,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 217,
+   "name": "RPLP1",
+   "x": 676,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 220,
+   "name": "EEF1A1",
+   "x": 756,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 223,
+   "name": "XIST",
+   "x": 836,
+   "y": 406.6666666666667,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 225,
+   "name": "RPS4Y1",
+   "x": 64,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 227,
+   "name": "ACTB",
+   "x": 144,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 229,
+   "name": "B2M",
+   "x": 224,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 231,
+   "name": "GAPDH",
+   "x": 304,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 233,
+   "name": "TMSB4X",
+   "x": 384,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 235,
+   "name": "FTL",
+   "x": 464,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 237,
+   "name": "NEAT1",
+   "x": 544,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 239,
+   "name": "CD3E",
+   "x": 624,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 242,
+   "name": "NKG7",
+   "x": 704,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 245,
+   "name": "HLA-DRA",
+   "x": 784,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 248,
+   "name": "CD14",
+   "x": 864,
+   "y": 473.3333333333333,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 251,
+   "name": "FCGR3A",
+   "x": 36,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 254,
+   "name": "PPBP",
+   "x": 116,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 257,
+   "name": "PF4",
+   "x": 196,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 260,
+   "name": "ITGA2B",
+   "x": 276,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 263,
+   "name": "GP9",
+   "x": 356,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 266,
+   "name": "CPA3",
+   "x": 436,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 269,
+   "name": "TPSAB1",
+   "x": 516,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  },
+  {
+   "id": 272,
+   "name": "KIT",
+   "x": 596,
+   "y": 540,
+   "type": "cont",
+   "card": 3,
+   "shape": "uniform",
+   "skew": 0.5,
+   "weights": "",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "skewed",
+   "lo": 0,
+   "hi": 6,
+   "integer": false,
+   "role": "other"
+  }
+ ],
+ "edges": [
+  {
+   "id": 10,
+   "a": 4,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.9,
+   "sign": 1
+  },
+  {
+   "id": 12,
+   "a": 1,
+   "b": 11,
+   "kind": "dir",
+   "strength": 0.85,
+   "sign": -1
+  },
+  {
+   "id": 13,
+   "a": 8,
+   "b": 11,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 15,
+   "a": 1,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.77,
+   "sign": -1
+  },
+  {
+   "id": 16,
+   "a": 8,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 18,
+   "a": 1,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.85,
+   "sign": -1
+  },
+  {
+   "id": 19,
+   "a": 8,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 21,
+   "a": 1,
+   "b": 20,
+   "kind": "dir",
+   "strength": 0.78,
+   "sign": -1
+  },
+  {
+   "id": 22,
+   "a": 8,
+   "b": 20,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 24,
+   "a": 1,
+   "b": 23,
+   "kind": "dir",
+   "strength": 0.86,
+   "sign": -1
+  },
+  {
+   "id": 25,
+   "a": 8,
+   "b": 23,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 27,
+   "a": 2,
+   "b": 26,
+   "kind": "dir",
+   "strength": 0.6,
+   "sign": 1,
+   "mod": 1,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 28,
+   "a": 1,
+   "b": 26,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": -1
+  },
+  {
+   "id": 29,
+   "a": 8,
+   "b": 26,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 31,
+   "a": 2,
+   "b": 30,
+   "kind": "dir",
+   "strength": 0.59,
+   "sign": 1,
+   "mod": 1,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 32,
+   "a": 1,
+   "b": 30,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": -1
+  },
+  {
+   "id": 33,
+   "a": 8,
+   "b": 30,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 35,
+   "a": 2,
+   "b": 34,
+   "kind": "dir",
+   "strength": 0.63,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 36,
+   "a": 1,
+   "b": 34,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": -1
+  },
+  {
+   "id": 37,
+   "a": 8,
+   "b": 34,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 39,
+   "a": 2,
+   "b": 38,
+   "kind": "dir",
+   "strength": 0.62,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 40,
+   "a": 1,
+   "b": 38,
+   "kind": "dir",
+   "strength": 0.19,
+   "sign": -1
+  },
+  {
+   "id": 41,
+   "a": 8,
+   "b": 38,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 43,
+   "a": 2,
+   "b": 42,
+   "kind": "dir",
+   "strength": 0.66,
+   "sign": 1,
+   "mod": 1,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 44,
+   "a": 1,
+   "b": 42,
+   "kind": "dir",
+   "strength": 0.16,
+   "sign": -1
+  },
+  {
+   "id": 45,
+   "a": 8,
+   "b": 42,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 47,
+   "a": 2,
+   "b": 46,
+   "kind": "dir",
+   "strength": 0.66,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 48,
+   "a": 1,
+   "b": 46,
+   "kind": "dir",
+   "strength": 0.16,
+   "sign": -1
+  },
+  {
+   "id": 49,
+   "a": 8,
+   "b": 46,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 51,
+   "a": 1,
+   "b": 50,
+   "kind": "dir",
+   "strength": 0.82,
+   "sign": 1
+  },
+  {
+   "id": 52,
+   "a": 8,
+   "b": 50,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 54,
+   "a": 1,
+   "b": 53,
+   "kind": "dir",
+   "strength": 0.77,
+   "sign": 1
+  },
+  {
+   "id": 55,
+   "a": 8,
+   "b": 53,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 57,
+   "a": 1,
+   "b": 56,
+   "kind": "dir",
+   "strength": 0.86,
+   "sign": 1
+  },
+  {
+   "id": 58,
+   "a": 8,
+   "b": 56,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 60,
+   "a": 1,
+   "b": 59,
+   "kind": "dir",
+   "strength": 0.85,
+   "sign": 1
+  },
+  {
+   "id": 61,
+   "a": 8,
+   "b": 59,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 63,
+   "a": 1,
+   "b": 62,
+   "kind": "dir",
+   "strength": 0.9,
+   "sign": 1
+  },
+  {
+   "id": 64,
+   "a": 8,
+   "b": 62,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 66,
+   "a": 1,
+   "b": 65,
+   "kind": "dir",
+   "strength": 0.87,
+   "sign": 1
+  },
+  {
+   "id": 67,
+   "a": 8,
+   "b": 65,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 69,
+   "a": 4,
+   "b": 68,
+   "kind": "dir",
+   "strength": 0.66,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 70,
+   "a": 8,
+   "b": 68,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 71,
+   "a": 1,
+   "b": 68,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 73,
+   "a": 4,
+   "b": 72,
+   "kind": "dir",
+   "strength": 0.52,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 74,
+   "a": 8,
+   "b": 72,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 75,
+   "a": 1,
+   "b": 72,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 77,
+   "a": 4,
+   "b": 76,
+   "kind": "dir",
+   "strength": 0.57,
+   "sign": -1,
+   "mod": 1,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 78,
+   "a": 8,
+   "b": 76,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 79,
+   "a": 1,
+   "b": 76,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 81,
+   "a": 3,
+   "b": 80,
+   "kind": "dir",
+   "strength": 0.6,
+   "sign": -1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 82,
+   "a": 4,
+   "b": 80,
+   "kind": "dir",
+   "strength": 0.13,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 83,
+   "a": 8,
+   "b": 80,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 84,
+   "a": 5,
+   "b": 80,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 86,
+   "a": 3,
+   "b": 85,
+   "kind": "dir",
+   "strength": 0.47,
+   "sign": -1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 87,
+   "a": 4,
+   "b": 85,
+   "kind": "dir",
+   "strength": 0.16,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 88,
+   "a": 8,
+   "b": 85,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 89,
+   "a": 5,
+   "b": 85,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 91,
+   "a": 3,
+   "b": 90,
+   "kind": "dir",
+   "strength": 0.49,
+   "sign": -1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 92,
+   "a": 4,
+   "b": 90,
+   "kind": "dir",
+   "strength": 0.14,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 93,
+   "a": 8,
+   "b": 90,
+   "kind": "dir",
+   "strength": 0.08,
+   "sign": 1
+  },
+  {
+   "id": 94,
+   "a": 5,
+   "b": 90,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 96,
+   "a": 3,
+   "b": 95,
+   "kind": "dir",
+   "strength": 0.54,
+   "sign": -1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 97,
+   "a": 4,
+   "b": 95,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 98,
+   "a": 8,
+   "b": 95,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 99,
+   "a": 5,
+   "b": 95,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 101,
+   "a": 3,
+   "b": 100,
+   "kind": "dir",
+   "strength": 0.53,
+   "sign": -1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 102,
+   "a": 4,
+   "b": 100,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 103,
+   "a": 8,
+   "b": 100,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 104,
+   "a": 5,
+   "b": 100,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 106,
+   "a": 3,
+   "b": 105,
+   "kind": "dir",
+   "strength": 0.56,
+   "sign": -1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 107,
+   "a": 4,
+   "b": 105,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    0
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 108,
+   "a": 8,
+   "b": 105,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 109,
+   "a": 5,
+   "b": 105,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 111,
+   "a": 3,
+   "b": 110,
+   "kind": "dir",
+   "strength": 0.4,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 112,
+   "a": 4,
+   "b": 110,
+   "kind": "dir",
+   "strength": 0.29,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 113,
+   "a": 8,
+   "b": 110,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 114,
+   "a": 5,
+   "b": 110,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 116,
+   "a": 3,
+   "b": 115,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 117,
+   "a": 4,
+   "b": 115,
+   "kind": "dir",
+   "strength": 0.36,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 118,
+   "a": 8,
+   "b": 115,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 119,
+   "a": 5,
+   "b": 115,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 121,
+   "a": 3,
+   "b": 120,
+   "kind": "dir",
+   "strength": 0.26,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 122,
+   "a": 4,
+   "b": 120,
+   "kind": "dir",
+   "strength": 0.36,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 123,
+   "a": 8,
+   "b": 120,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 124,
+   "a": 5,
+   "b": 120,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 126,
+   "a": 3,
+   "b": 125,
+   "kind": "dir",
+   "strength": 0.32,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 127,
+   "a": 4,
+   "b": 125,
+   "kind": "dir",
+   "strength": 0.36,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 128,
+   "a": 8,
+   "b": 125,
+   "kind": "dir",
+   "strength": 0.08,
+   "sign": 1
+  },
+  {
+   "id": 129,
+   "a": 5,
+   "b": 125,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 131,
+   "a": 3,
+   "b": 130,
+   "kind": "dir",
+   "strength": 0.32,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 132,
+   "a": 4,
+   "b": 130,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 133,
+   "a": 8,
+   "b": 130,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 134,
+   "a": 5,
+   "b": 130,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 136,
+   "a": 3,
+   "b": 135,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 137,
+   "a": 4,
+   "b": 135,
+   "kind": "dir",
+   "strength": 0.27,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 138,
+   "a": 8,
+   "b": 135,
+   "kind": "dir",
+   "strength": 0.08,
+   "sign": 1
+  },
+  {
+   "id": 139,
+   "a": 5,
+   "b": 135,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 141,
+   "a": 3,
+   "b": 140,
+   "kind": "dir",
+   "strength": 0.47,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 142,
+   "a": 4,
+   "b": 140,
+   "kind": "dir",
+   "strength": 0.17,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    2
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 143,
+   "a": 8,
+   "b": 140,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 144,
+   "a": 5,
+   "b": 140,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 146,
+   "a": 3,
+   "b": 145,
+   "kind": "dir",
+   "strength": 0.46,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 147,
+   "a": 4,
+   "b": 145,
+   "kind": "dir",
+   "strength": 0.19,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    2
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 148,
+   "a": 8,
+   "b": 145,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 149,
+   "a": 5,
+   "b": 145,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 151,
+   "a": 3,
+   "b": 150,
+   "kind": "dir",
+   "strength": 0.46,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 152,
+   "a": 4,
+   "b": 150,
+   "kind": "dir",
+   "strength": 0.13,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    2
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 153,
+   "a": 8,
+   "b": 150,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 154,
+   "a": 5,
+   "b": 150,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 156,
+   "a": 3,
+   "b": 155,
+   "kind": "dir",
+   "strength": 0.59,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 157,
+   "a": 4,
+   "b": 155,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    2
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 158,
+   "a": 8,
+   "b": 155,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": 1
+  },
+  {
+   "id": 159,
+   "a": 5,
+   "b": 155,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 161,
+   "a": 3,
+   "b": 160,
+   "kind": "dir",
+   "strength": 0.55,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 162,
+   "a": 4,
+   "b": 160,
+   "kind": "dir",
+   "strength": 0.17,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    2
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 163,
+   "a": 8,
+   "b": 160,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 164,
+   "a": 5,
+   "b": 160,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 166,
+   "a": 3,
+   "b": 165,
+   "kind": "dir",
+   "strength": 0.46,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    1
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 167,
+   "a": 4,
+   "b": 165,
+   "kind": "dir",
+   "strength": 0.13,
+   "sign": 1,
+   "mod": 3,
+   "modOn": [
+    2
+   ],
+   "modElse": 0
+  },
+  {
+   "id": 168,
+   "a": 8,
+   "b": 165,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 169,
+   "a": 5,
+   "b": 165,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 171,
+   "a": 6,
+   "b": 170,
+   "kind": "dir",
+   "strength": 0.67,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    0
+   ],
+   "modElse": 0.3
+  },
+  {
+   "id": 172,
+   "a": 8,
+   "b": 170,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 173,
+   "a": 5,
+   "b": 170,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 175,
+   "a": 6,
+   "b": 174,
+   "kind": "dir",
+   "strength": 0.55,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    0
+   ],
+   "modElse": 0.3
+  },
+  {
+   "id": 176,
+   "a": 8,
+   "b": 174,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 177,
+   "a": 5,
+   "b": 174,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 179,
+   "a": 6,
+   "b": 178,
+   "kind": "dir",
+   "strength": 0.69,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    0
+   ],
+   "modElse": 0.3
+  },
+  {
+   "id": 180,
+   "a": 8,
+   "b": 178,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 181,
+   "a": 5,
+   "b": 178,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 183,
+   "a": 6,
+   "b": 182,
+   "kind": "dir",
+   "strength": 0.61,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    0
+   ],
+   "modElse": 0.3
+  },
+  {
+   "id": 184,
+   "a": 8,
+   "b": 182,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 185,
+   "a": 5,
+   "b": 182,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 187,
+   "a": 6,
+   "b": 186,
+   "kind": "dir",
+   "strength": 0.65,
+   "sign": 1,
+   "mod": 5,
+   "modOn": [
+    0
+   ],
+   "modElse": 0.3
+  },
+  {
+   "id": 188,
+   "a": 8,
+   "b": 186,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 189,
+   "a": 5,
+   "b": 186,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 191,
+   "a": 7,
+   "b": 190,
+   "kind": "dir",
+   "strength": 0.63,
+   "sign": 1
+  },
+  {
+   "id": 192,
+   "a": 8,
+   "b": 190,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 194,
+   "a": 7,
+   "b": 193,
+   "kind": "dir",
+   "strength": 0.64,
+   "sign": 1
+  },
+  {
+   "id": 195,
+   "a": 8,
+   "b": 193,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 197,
+   "a": 7,
+   "b": 196,
+   "kind": "dir",
+   "strength": 0.66,
+   "sign": 1
+  },
+  {
+   "id": 198,
+   "a": 8,
+   "b": 196,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 200,
+   "a": 7,
+   "b": 199,
+   "kind": "dir",
+   "strength": 0.34,
+   "sign": 1
+  },
+  {
+   "id": 201,
+   "a": 9,
+   "b": 199,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 203,
+   "a": 7,
+   "b": 202,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1
+  },
+  {
+   "id": 204,
+   "a": 9,
+   "b": 202,
+   "kind": "dir",
+   "strength": 0.07,
+   "sign": -1
+  },
+  {
+   "id": 206,
+   "a": 7,
+   "b": 205,
+   "kind": "dir",
+   "strength": 0.32,
+   "sign": 1
+  },
+  {
+   "id": 207,
+   "a": 9,
+   "b": 205,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": -1
+  },
+  {
+   "id": 209,
+   "a": 8,
+   "b": 208,
+   "kind": "dir",
+   "strength": 0.27,
+   "sign": 1
+  },
+  {
+   "id": 210,
+   "a": 9,
+   "b": 208,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 212,
+   "a": 8,
+   "b": 211,
+   "kind": "dir",
+   "strength": 0.35,
+   "sign": 1
+  },
+  {
+   "id": 213,
+   "a": 9,
+   "b": 211,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 215,
+   "a": 8,
+   "b": 214,
+   "kind": "dir",
+   "strength": 0.37,
+   "sign": 1
+  },
+  {
+   "id": 216,
+   "a": 9,
+   "b": 214,
+   "kind": "dir",
+   "strength": 0.02,
+   "sign": 1
+  },
+  {
+   "id": 218,
+   "a": 8,
+   "b": 217,
+   "kind": "dir",
+   "strength": 0.39,
+   "sign": 1
+  },
+  {
+   "id": 219,
+   "a": 9,
+   "b": 217,
+   "kind": "dir",
+   "strength": 0.02,
+   "sign": -1
+  },
+  {
+   "id": 221,
+   "a": 8,
+   "b": 220,
+   "kind": "dir",
+   "strength": 0.4,
+   "sign": 1
+  },
+  {
+   "id": 222,
+   "a": 9,
+   "b": 220,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": -1
+  },
+  {
+   "id": 224,
+   "a": 9,
+   "b": 223,
+   "kind": "dir",
+   "strength": 0.49,
+   "sign": 1
+  },
+  {
+   "id": 226,
+   "a": 9,
+   "b": 225,
+   "kind": "dir",
+   "strength": 0.32,
+   "sign": -1
+  },
+  {
+   "id": 228,
+   "a": 8,
+   "b": 227,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 230,
+   "a": 8,
+   "b": 229,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 232,
+   "a": 8,
+   "b": 231,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 234,
+   "a": 8,
+   "b": 233,
+   "kind": "dir",
+   "strength": 0.08,
+   "sign": 1
+  },
+  {
+   "id": 236,
+   "a": 8,
+   "b": 235,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 238,
+   "a": 8,
+   "b": 237,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 240,
+   "a": 1,
+   "b": 239,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 241,
+   "a": 8,
+   "b": 239,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 243,
+   "a": 1,
+   "b": 242,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 244,
+   "a": 8,
+   "b": 242,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 246,
+   "a": 1,
+   "b": 245,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 247,
+   "a": 8,
+   "b": 245,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 249,
+   "a": 1,
+   "b": 248,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 250,
+   "a": 8,
+   "b": 248,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 252,
+   "a": 1,
+   "b": 251,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 253,
+   "a": 8,
+   "b": 251,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 255,
+   "a": 1,
+   "b": 254,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 256,
+   "a": 8,
+   "b": 254,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 258,
+   "a": 1,
+   "b": 257,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 259,
+   "a": 8,
+   "b": 257,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 261,
+   "a": 1,
+   "b": 260,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 262,
+   "a": 8,
+   "b": 260,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 264,
+   "a": 1,
+   "b": 263,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 265,
+   "a": 8,
+   "b": 263,
+   "kind": "dir",
+   "strength": 0.02,
+   "sign": 1
+  },
+  {
+   "id": 267,
+   "a": 1,
+   "b": 266,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 268,
+   "a": 8,
+   "b": 266,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  },
+  {
+   "id": 270,
+   "a": 1,
+   "b": 269,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 271,
+   "a": 8,
+   "b": 269,
+   "kind": "dir",
+   "strength": 0.03,
+   "sign": 1
+  },
+  {
+   "id": 273,
+   "a": 1,
+   "b": 272,
+   "kind": "dir",
+   "strength": 0,
+   "sign": 1
+  },
+  {
+   "id": 274,
+   "a": 8,
+   "b": 272,
+   "kind": "dir",
+   "strength": 0.04,
+   "sign": 1
+  }
+ ],
+ "nextId": 275
+}
