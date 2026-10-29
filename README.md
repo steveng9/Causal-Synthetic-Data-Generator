@@ -39,7 +39,7 @@ The page also remembers your last graph in the browser's local storage.
 
 ### Drawing the graph
 
-- Double-click the paper (or press **Add node**) to add a node.
+- Double-click the paper (or press **Add node**) to add a node. A new node copies the settings of the node you added last (type, role, cardinality, distribution), so a run of similar columns takes one setup.
 - Drag from a node's **+** handle (or Shift-drag the node) onto another node to connect them. **New edges** sets whether the new edge is directed or undirected.
 - Click a node or edge to edit it in the inspector on the left. Delete removes it, Esc deselects.
 
@@ -87,6 +87,8 @@ With **Apply to sample** ticked, the table is regenerated with the cut edges rem
 | **Bayesian net (PrivBayes-style, k=2)** | A directed network in which no node has more than 2 parents. |
 | **Intersection** | Race affects hiring only for one gender, so each attribute looks almost fair on its own, while one combination is treated worse. |
 | **No edges / Blank paper** | Starting points. |
+| **Blood cells, PBMC-like (41 genes)** | A single-cell-style table: 41 gene columns, all cell labels hidden. Five cell types (T, NK, B, monocyte, dendritic) shift the genes. Subtypes act only inside one type (T-cell states, naive vs memory B, classical vs non-classical monocytes), plus a cycling program, an interferon gradient, sequencing depth and a weak donor batch. Open **Embedding → UMAP** and color by `cell_type`, `t_state` or `donor`. |
+| **Bone marrow with differentiation (74 genes)** | A larger single-cell-style table. Progenitors mature along a hidden `maturity` score and commit to an erythroid, myeloid or lymphoid fate. Stromal, endothelial and plasma cells form their own islands. A stress program (mitochondrial genes) and donor batch genes add noise, and 12 genes carry almost no signal. |
 
 ## How the table is made
 

@@ -297,6 +297,10 @@ details.codes td { padding: 2px 6px; }
       <option value="intersect">Intersection: race matters only for one gender</option>
       <option value="independent">No edges</option>
       <option value="empty">Blank paper</option>
+      <optgroup label="Single-cell style: genes only, cell labels hidden">
+        <option value="sc_pbmc">Blood cells, PBMC-like (41 genes)</option>
+        <option value="sc_marrow">Bone marrow with differentiation (74 genes)</option>
+      </optgroup>
       <optgroup label="Project datasets: real columns, no edges">
         <option value="ds:adult">Adult (14 columns)</option>
         <option value="ds:compas">COMPAS (8 columns)</option>
@@ -527,7 +531,7 @@ function shapeInv(shape, u) {
 function posLevel(n) { return n.pos == null || n.pos >= n.card ? n.card - 1 : n.pos; }
 
 /* ---------------- state ---------------- */
-let G = null, sel = null, newKind = 'dir', DATA = null, downloads = null;
+let G = null, sel = null, lastAdded = null, newKind = 'dir', DATA = null, downloads = null;
 let N = 5000, SEED = 7, tab = 'dep', depMode = 'mi', stale = false, showR = true, cutView = '', applyCut = true;
 let ci = {x: null, y: null, z: new Set()};
 const emb = {method: 'pca', features: 'all', encode: 'onehot', color: null, cap: 1500, running: false, result: null, stale: true, token: 0};
@@ -599,8 +603,42 @@ const TEMPLATES = {
     G.nodes.push(blankNode({name: 'S', x: 180, y: 290, card: 2, role: 'protected'}), blankNode({name: 'A', x: 380, y: 180, type: 'cont', role: 'admissible'}),
       blankNode({name: 'B', x: 380, y: 420, card: 30, shape: 'skewed'}), blankNode({name: 'Y', x: 640, y: 290, card: 2, role: 'outcome'}));
   },
-  empty() { G = {mode: 'mixed', nodes: [], edges: [], nextId: 1}; }
+  empty() { G = {mode: 'mixed', nodes: [], edges: [], nextId: 1}; },
+  sc_pbmc() { loadSingleCell('pbmc'); },
+  sc_marrow() { loadSingleCell('marrow'); }
 };
+
+/* ---------------- single-cell style examples ---------------- */
+// Hidden cell programs (cell type, subtype, cycling, depth, donor) drive many gene columns.
+// A gene's effect can be switched on only inside some cell types (a moderated edge), which
+// nests subtypes inside types; the table holds genes only, as in an expression matrix.
+// factors: [name, cardinality | 'cont', weights | 0, labels | 0, hidden]
+// links: [parent, child, strength, sign]; genes: [name, max, [[parent, strength, sign, moderator?, levels on?, effect elsewhere?]]]
+const SC_EXAMPLES = {"pbmc":{"factors":[["cell_type",5,[0.42,0.24,0.14,0.12,0.08],["T cell","Monocyte","B cell","NK cell","Dendritic cell"],1],["t_state",3,[0.45,0.35,0.2],["Naive","Memory","Cytotoxic"],1],["mono_subtype",2,[0.8,0.2],["Classical","Non-classical"],1],["b_subtype",2,[0.6,0.4],["Naive B","Memory B"],1],["cycling",2,[0.92,0.08],["Resting","Cycling"],1],["ifn_response","cont",0,0,1],["seq_depth","cont",0,0,1],["donor",6,0,["D1","D2","D3","D4","D5","D6"],1]],"links":[],"genes":[["CD3E",6,[["cell_type",0.77,-1],["seq_depth",0.05,1]]],["IL7R",6,[["cell_type",0.84,-1],["seq_depth",0.03,1]]],["LTB",6,[["cell_type",0.77,-1],["seq_depth",0.08,1]]],["CD3D",6,[["cell_type",0.76,-1],["seq_depth",0.04,1]]],["TRAC",6,[["cell_type",0.89,-1],["seq_depth",0.06,1]]],["CD2",6,[["cell_type",0.81,-1],["seq_depth",0.06,1]]],["LYZ",6,[["cell_type",0.85,1],["seq_depth",0.04,1]]],["CST3",6,[["cell_type",0.77,1],["seq_depth",0.07,1]]],["S100A8",6,[["cell_type",0.85,1],["seq_depth",0.06,1]]],["FCN1",6,[["cell_type",0.87,1],["seq_depth",0.06,1]]],["HLA-DRA",6,[["cell_type",0.9,1],["seq_depth",0.04,1]]],["CD74",6,[["cell_type",0.83,1],["seq_depth",0.05,1]]],["FCER1A",6,[["cell_type",0.8,1],["seq_depth",0.06,1]]],["KLRD1",6,[["cell_type",0.79,1],["seq_depth",0.07,1]]],["MS4A1",6,[["b_subtype",0.62,1,"cell_type",[2],0],["cell_type",0.22,1],["seq_depth",0.03,1]]],["CD79A",6,[["b_subtype",0.63,1,"cell_type",[2],0],["cell_type",0.17,-1],["seq_depth",0.04,1]]],["IGHM",6,[["b_subtype",0.63,1,"cell_type",[2],0],["cell_type",0.15,1],["seq_depth",0.05,1]]],["IGHD",6,[["b_subtype",0.54,-1,"cell_type",[2],0],["cell_type",0.25,1],["seq_depth",0.03,1]]],["CCR7",6,[["t_state",0.43,-1,"cell_type",[0],0],["cell_type",0.2,-1],["seq_depth",0.05,1]]],["SELL",6,[["t_state",0.54,-1,"cell_type",[0],0],["cell_type",0.11,-1],["seq_depth",0.03,1]]],["TCF7",6,[["t_state",0.57,-1,"cell_type",[0],0],["cell_type",0.16,-1],["seq_depth",0.05,1]]],["GZMB",6,[["t_state",0.46,1,"cell_type",[0],0],["cell_type",0.06,-1],["seq_depth",0.04,1]]],["NKG7",6,[["t_state",0.4,1,"cell_type",[0],0],["cell_type",0.13,-1],["seq_depth",0.05,1]]],["GNLY",6,[["t_state",0.43,1,"cell_type",[0],0],["cell_type",0.12,-1],["seq_depth",0.04,1]]],["PRF1",6,[["t_state",0.41,1,"cell_type",[0],0],["cell_type",0.11,-1],["seq_depth",0.07,1]]],["FCGR3A",6,[["mono_subtype",0.51,1,"cell_type",[1],0],["cell_type",0.18,1],["seq_depth",0.04,1]]],["MS4A7",6,[["mono_subtype",0.52,1,"cell_type",[1],0],["cell_type",0.1,1],["seq_depth",0.04,1]]],["CDKN1C",6,[["mono_subtype",0.65,1,"cell_type",[1],0],["cell_type",0.15,1],["seq_depth",0.07,1]]],["MKI67",6,[["cycling",0.54,1,"cell_type",[0,3,2],0],["cell_type",0.0,1],["seq_depth",0.04,1]]],["TOP2A",6,[["cycling",0.7,1,"cell_type",[0,3,2],0],["cell_type",0.0,1],["seq_depth",0.05,1]]],["STMN1",6,[["cycling",0.59,1,"cell_type",[0,3,2],0],["cell_type",0.0,1],["seq_depth",0.07,1]]],["ISG15",6,[["ifn_response",0.36,1],["seq_depth",0.03,1]]],["IFI6",6,[["ifn_response",0.43,1],["seq_depth",0.04,1]]],["MX1",6,[["ifn_response",0.52,1],["seq_depth",0.07,1]]],["MALAT1",6,[["seq_depth",0.31,1],["donor",0.05,-1]]],["RPL13",6,[["seq_depth",0.36,1],["donor",0.06,1]]],["RPS27",6,[["seq_depth",0.33,1],["donor",0.03,1]]],["HBB",6,[["donor",0.11,-1]]],["PPBP",6,[["donor",0.1,1]]],["ACTB",6,[["seq_depth",0.05,1]]],["B2M",6,[["seq_depth",0.04,1]]]]},"marrow":{"factors":[["population",3,[0.17,0.76,0.07],["Niche cell","Blood-forming","Plasma cell"],1],["niche_type",2,[0.55,0.45],["Stromal","Endothelial"],1],["fate",3,[0.38,0.34,0.28],["Erythroid","Myeloid","Lymphoid"],1],["maturity","cont",0,0,1],["stage",2,[0.45,0.55],["Early","Committed"],1],["cycling",2,[0.85,0.15],["Resting","Cycling"],1],["stress","cont",0,0,1],["seq_depth","cont",0,0,1],["donor",8,0,["D1","D2","D3","D4","D5","D6","D7","D8"],1]],"links":[["maturity","stage",0.9,1]],"genes":[["CXCL12",6,[["population",0.85,-1],["seq_depth",0.06,1]]],["LEPR",6,[["population",0.77,-1],["seq_depth",0.04,1]]],["COL1A1",6,[["population",0.85,-1],["seq_depth",0.07,1]]],["VCAM1",6,[["population",0.78,-1],["seq_depth",0.04,1]]],["PTPRC",6,[["population",0.86,-1],["seq_depth",0.05,1]]],["PECAM1",6,[["niche_type",0.6,1,"population",[0],0],["population",0.11,-1],["seq_depth",0.05,1]]],["CDH5",6,[["niche_type",0.59,1,"population",[0],0],["population",0.15,-1],["seq_depth",0.06,1]]],["VWF",6,[["niche_type",0.63,-1,"population",[0],0],["population",0.1,-1],["seq_depth",0.06,1]]],["KDR",6,[["niche_type",0.62,-1,"population",[0],0],["population",0.19,-1],["seq_depth",0.03,1]]],["LUM",6,[["niche_type",0.66,1,"population",[0],0],["population",0.16,-1],["seq_depth",0.07,1]]],["DCN",6,[["niche_type",0.66,-1,"population",[0],0],["population",0.16,-1],["seq_depth",0.07,1]]],["JCHAIN",6,[["population",0.82,1],["seq_depth",0.04,1]]],["MZB1",6,[["population",0.77,1],["seq_depth",0.05,1]]],["SDC1",6,[["population",0.86,1],["seq_depth",0.05,1]]],["XBP1",6,[["population",0.85,1],["seq_depth",0.04,1]]],["CD34",6,[["population",0.9,1],["seq_depth",0.05,1]]],["SPINK2",6,[["population",0.87,1],["seq_depth",0.07,1]]],["AVP",6,[["maturity",0.66,-1,"population",[1],0],["seq_depth",0.05,1]]],["HLF",6,[["maturity",0.52,-1,"population",[1],0],["seq_depth",0.05,1]]],["MECOM",6,[["maturity",0.57,-1,"population",[1],0],["seq_depth",0.05,1]]],["HBB",6,[["fate",0.6,-1,"stage",[1],0],["maturity",0.13,1,"fate",[0],0],["seq_depth",0.07,1]]],["HBA1",6,[["fate",0.47,-1,"stage",[1],0],["maturity",0.16,1,"fate",[0],0],["seq_depth",0.05,1]]],["GATA1",6,[["fate",0.49,-1,"stage",[1],0],["maturity",0.14,1,"fate",[0],0],["seq_depth",0.08,1]]],["KLF1",6,[["fate",0.54,-1,"stage",[1],0],["maturity",0.15,1,"fate",[0],0],["seq_depth",0.07,1]]],["CA1",6,[["fate",0.53,-1,"stage",[1],0],["maturity",0.11,1,"fate",[0],0],["seq_depth",0.04,1]]],["ALAS2",6,[["fate",0.56,-1,"stage",[1],0],["maturity",0.15,1,"fate",[0],0],["seq_depth",0.04,1]]],["MPO",6,[["fate",0.4,1,"stage",[1],0],["maturity",0.29,1,"fate",[1],0],["seq_depth",0.07,1]]],["ELANE",6,[["fate",0.3,1,"stage",[1],0],["maturity",0.36,1,"fate",[1],0],["seq_depth",0.06,1]]],["AZU1",6,[["fate",0.26,1,"stage",[1],0],["maturity",0.36,1,"fate",[1],0],["seq_depth",0.04,1]]],["LYZ",6,[["fate",0.32,1,"stage",[1],0],["maturity",0.36,1,"fate",[1],0],["seq_depth",0.08,1]]],["CEBPA",6,[["fate",0.32,1,"stage",[1],0],["maturity",0.35,1,"fate",[1],0],["seq_depth",0.05,1]]],["S100A9",6,[["fate",0.35,1,"stage",[1],0],["maturity",0.27,1,"fate",[1],0],["seq_depth",0.08,1]]],["DNTT",6,[["fate",0.47,1,"stage",[1],0],["maturity",0.17,1,"fate",[2],0],["seq_depth",0.03,1]]],["VPREB1",6,[["fate",0.46,1,"stage",[1],0],["maturity",0.19,1,"fate",[2],0],["seq_depth",0.07,1]]],["IGLL1",6,[["fate",0.46,1,"stage",[1],0],["maturity",0.13,1,"fate",[2],0],["seq_depth",0.03,1]]],["CD79A",6,[["fate",0.59,1,"stage",[1],0],["maturity",0.18,1,"fate",[2],0],["seq_depth",0.07,1]]],["EBF1",6,[["fate",0.55,1,"stage",[1],0],["maturity",0.17,1,"fate",[2],0],["seq_depth",0.03,1]]],["PAX5",6,[["fate",0.46,1,"stage",[1],0],["maturity",0.13,1,"fate",[2],0],["seq_depth",0.06,1]]],["MKI67",6,[["cycling",0.67,1,"stage",[0],0.3],["seq_depth",0.05,1]]],["TOP2A",6,[["cycling",0.55,1,"stage",[0],0.3],["seq_depth",0.06,1]]],["CENPF",6,[["cycling",0.69,1,"stage",[0],0.3],["seq_depth",0.05,1]]],["TUBB",6,[["cycling",0.61,1,"stage",[0],0.3],["seq_depth",0.04,1]]],["HMGB2",6,[["cycling",0.65,1,"stage",[0],0.3],["seq_depth",0.04,1]]],["MT-CO1",6,[["stress",0.63,1],["seq_depth",0.04,1]]],["MT-ND3",6,[["stress",0.64,1],["seq_depth",0.06,1]]],["MT-ATP6",6,[["stress",0.66,1],["seq_depth",0.06,1]]],["HSPA1A",6,[["stress",0.34,1],["donor",0.05,1]]],["FOS",6,[["stress",0.35,1],["donor",0.07,-1]]],["JUN",6,[["stress",0.32,1],["donor",0.04,-1]]],["MALAT1",6,[["seq_depth",0.27,1],["donor",0.03,1]]],["RPL13",6,[["seq_depth",0.35,1],["donor",0.03,1]]],["RPS27",6,[["seq_depth",0.37,1],["donor",0.02,1]]],["RPLP1",6,[["seq_depth",0.39,1],["donor",0.02,-1]]],["EEF1A1",6,[["seq_depth",0.4,1],["donor",0.04,-1]]],["XIST",6,[["donor",0.49,1]]],["RPS4Y1",6,[["donor",0.32,-1]]],["ACTB",6,[["seq_depth",0.03,1]]],["B2M",6,[["seq_depth",0.06,1]]],["GAPDH",6,[["seq_depth",0.06,1]]],["TMSB4X",6,[["seq_depth",0.08,1]]],["FTL",6,[["seq_depth",0.03,1]]],["NEAT1",6,[["seq_depth",0.05,1]]],["CD3E",6,[["population",0.0,1],["seq_depth",0.03,1]]],["NKG7",6,[["population",0.0,1],["seq_depth",0.03,1]]],["HLA-DRA",6,[["population",0.0,1],["seq_depth",0.04,1]]],["CD14",6,[["population",0.0,1],["seq_depth",0.03,1]]],["FCGR3A",6,[["population",0.0,1],["seq_depth",0.03,1]]],["PPBP",6,[["population",0.0,1],["seq_depth",0.05,1]]],["PF4",6,[["population",0.0,1],["seq_depth",0.04,1]]],["ITGA2B",6,[["population",0.0,1],["seq_depth",0.04,1]]],["GP9",6,[["population",0.0,1],["seq_depth",0.02,1]]],["CPA3",6,[["population",0.0,1],["seq_depth",0.04,1]]],["TPSAB1",6,[["population",0.0,1],["seq_depth",0.03,1]]],["KIT",6,[["population",0.0,1],["seq_depth",0.04,1]]]]}};
+function loadSingleCell(key) {
+  const S = SC_EXAMPLES[key], by = {};
+  G = {mode: 'directed', nodes: [], edges: [], nextId: 1};
+  S.factors.forEach(([name, card, w, labels, hid], i) => {
+    const o = {name, role: hid ? 'hidden' : 'other', x: 60 + (VW - 120) * i / Math.max(1, S.factors.length - 1), y: 48};
+    by[name] = blankNode(card === 'cont' ? Object.assign(o, {type: 'cont', cshape: 'normal', lo: 0, hi: 1})
+      : Object.assign(o, {card, shape: w ? 'custom' : 'uniform', weights: w ? w.join(', ') : '', labels: labels || null}));
+    G.nodes.push(by[name]);
+  });
+  for (const [a, b, s, sg] of S.links) G.edges.push(edge(by[a].id, by[b].id, 'dir', s, sg));
+  const m = S.genes.length, nc = Math.ceil(Math.sqrt(m * 1.6)), nr = Math.ceil(m / nc);
+  S.genes.forEach(([name, hi, pa], i) => {
+    const r = Math.floor(i / nc), c = i % nc;
+    const n = blankNode({name, type: 'cont', cshape: 'skewed', lo: 0, hi, x: 50 + (VW - 100) * c / Math.max(1, nc - 1) + (r % 2 ? 14 : -14), y: 140 + (VH - 180) * r / Math.max(1, nr - 1)});
+    G.nodes.push(n); by[name] = n;
+    const need = pa.filter(p => p.length > 3 && !pa.some(q => q[0] === p[3])).map(p => [p[3], 0, 1]);
+    for (const p of pa.concat(need)) {
+      const e = edge(by[p[0]].id, n.id, 'dir', p[1], p[2]);
+      if (p.length > 3) Object.assign(e, {mod: by[p[3]].id, modOn: p[4], modElse: p[5]});
+      G.edges.push(e);
+    }
+  });
+  emb.method = 'umap';
+}
 
 /* ---------------- project datasets ---------------- */
 // Columns of the 11 project tables as the experiments see them (data/datasets.py):
@@ -1099,7 +1137,10 @@ function addNode(x, y) {
     }
     ({x, y} = best);
   }
-  const n = blankNode({x, y});
+  const prev = G.nodes.includes(lastAdded) ? lastAdded : null, copy = {};
+  if (prev) for (const k in prev) if (!['id', 'name', 'x', 'y', 'dsCol'].includes(k)) copy[k] = Array.isArray(prev[k]) ? prev[k].slice() : prev[k];
+  const n = blankNode(Object.assign(copy, {x, y}));
+  lastAdded = n;
   G.nodes.push(n); sel = {kind: 'node', id: n.id}; changed();
 }
 function addEdge(a, b, kind) {
@@ -1876,7 +1917,7 @@ function drawEmb() {
   if (leg) {
     if (isCatSmall) {
       const cnt = new Array(cn.card).fill(0); for (let r = 0; r < m; r++) cnt[D.codes[cn.id][r]]++;
-      leg.innerHTML = `<span style="color:var(--muted)">${esc(cn.name)}:</span>` + cnt.map((c, v) => c ? `<span><i style="background:${series[v]}"></i>${v} (${c})</span>` : '').join('');
+      leg.innerHTML = `<span style="color:var(--muted)">${esc(cn.name)}:</span>` + cnt.map((c, v) => c ? `<span><i style="background:${series[v]}"></i>${cn.labels && cn.labels[v] != null ? esc(cn.labels[v]) : v} (${c})</span>` : '').join('');
     } else leg.innerHTML = `<span style="color:var(--muted)">${esc(cn.name)}:</span><span>${cn.type === 'cat' ? 'code by latent order' : 'low'}</span><span style="display:inline-block;width:120px;height:9px;border-radius:5px;background:linear-gradient(90deg,${slo},${shi})"></span><span>high</span>${cn.type === 'cat' ? '<span style="color:var(--muted)">(over 8 values, so shaded by rank)</span>' : ''}`;
   }
   const note = $('#emb-note'); if (note) note.textContent = embNote() + ` Showing ${m.toLocaleString()} rows.`;
@@ -1888,7 +1929,7 @@ function embHover(ev) {
   for (const p of embPts) { const d = (p[0] - x) ** 2 + (p[1] - y) ** 2; if (d < bd) { bd = d; best = p; } }
   if (!best) return hideTip();
   const D = emb.dataRef, r = best[2];
-  showTip(ev, `row ${r + 1}<br>` + D.nodes.slice(0, 10).map(n => `${esc(n.name)} = ${n.type === 'cat' ? D.codes[n.id][r] : (+D.vals[n.id][r].toPrecision(4))}${n.role === 'hidden' ? ' (hidden)' : ''}`).join('<br>'));
+  showTip(ev, `row ${r + 1}<br>` + D.nodes.slice(0, 10).map(n => `${esc(n.name)} = ${n.type === 'cat' ? (n.labels && n.labels[D.codes[n.id][r]] != null ? esc(n.labels[D.codes[n.id][r]]) : D.codes[n.id][r]) : (+D.vals[n.id][r].toPrecision(4))}${n.role === 'hidden' ? ' (hidden)' : ''}`).join('<br>'));
 }
 
 /* Models: two quick predictors of the outcome, retrained on every new sample while the tab is open. */
