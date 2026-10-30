@@ -1,0 +1,964 @@
+{
+ "mode": "mixed",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "sex",
+   "x": 70,
+   "y": 80,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.692, 0.308",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "Male",
+    "Female"
+   ],
+   "dsCol": "sex"
+  },
+  {
+   "id": 2,
+   "name": "race",
+   "x": 70,
+   "y": 200,
+   "type": "cat",
+   "card": 5,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.82, 0.095, 0.072, 0.01, 0.002",
+   "ordinal": false,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "White",
+    "Black",
+    "Asian",
+    "American Indian / Alaska Native",
+    "Pacific Islander"
+   ],
+   "dsCol": "race"
+  },
+  {
+   "id": 3,
+   "name": "ethnicity",
+   "x": 70,
+   "y": 320,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.747, 0.253",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "Not Hispanic",
+    "Hispanic"
+   ],
+   "dsCol": "ethnicity"
+  },
+  {
+   "id": 4,
+   "name": "age",
+   "x": 70,
+   "y": 440,
+   "type": "cat",
+   "card": 7,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.034, 0.272, 0.263, 0.21, 0.137, 0.066, 0.018",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "<25",
+    "25-34",
+    "35-44",
+    "45-54",
+    "55-64",
+    "65-74",
+    ">74"
+   ],
+   "dsCol": "age"
+  },
+  {
+   "id": 5,
+   "name": "coapplicant",
+   "x": 145,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.544, 0.456",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "coapplicant"
+  },
+  {
+   "id": 6,
+   "name": "income",
+   "x": 223,
+   "y": 290,
+   "type": "cat",
+   "card": 7,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.038, 0.134, 0.248, 0.19, 0.221, 0.121, 0.048",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "<=30k",
+    "30-50k",
+    "50-75k",
+    "75-100k",
+    "100-150k",
+    "150-250k",
+    ">250k"
+   ],
+   "dsCol": "income"
+  },
+  {
+   "id": 7,
+   "name": "tract_minority",
+   "x": 298,
+   "y": 230,
+   "type": "cat",
+   "card": 5,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.023, 0.133, 0.461, 0.249, 0.134",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "<=10%",
+    "10-20%",
+    "20-50%",
+    "50-80%",
+    ">80%"
+   ],
+   "dsCol": "tract_minority"
+  },
+  {
+   "id": 8,
+   "name": "tract_income",
+   "x": 371,
+   "y": 290,
+   "type": "cat",
+   "card": 4,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.021, 0.127, 0.351, 0.501",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "Low (<50%)",
+    "Moderate (50-79%)",
+    "Middle (80-119%)",
+    "Upper (120%+)"
+   ],
+   "dsCol": "tract_income"
+  },
+  {
+   "id": 9,
+   "name": "loan_purpose",
+   "x": 298,
+   "y": 470,
+   "type": "cat",
+   "card": 3,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.743, 0.107, 0.15",
+   "ordinal": false,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "Purchase",
+    "Refinance",
+    "Cash-out refinance"
+   ],
+   "dsCol": "loan_purpose"
+  },
+  {
+   "id": 10,
+   "name": "loan_amount",
+   "x": 449,
+   "y": 290,
+   "type": "cat",
+   "card": 7,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.095, 0.164, 0.215, 0.304, 0.124, 0.071, 0.026",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "<=100k",
+    "100-150k",
+    "150-200k",
+    "200-300k",
+    "300-400k",
+    "400-600k",
+    ">600k"
+   ],
+   "dsCol": "loan_amount"
+  },
+  {
+   "id": 11,
+   "name": "jumbo",
+   "x": 527,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.952, 0.048",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "jumbo"
+  },
+  {
+   "id": 12,
+   "name": "loan_type",
+   "x": 605,
+   "y": 290,
+   "type": "cat",
+   "card": 4,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.707, 0.193, 0.093, 0.008",
+   "ordinal": false,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "Conventional",
+    "FHA",
+    "VA",
+    "USDA"
+   ],
+   "dsCol": "loan_type"
+  },
+  {
+   "id": 13,
+   "name": "loan_term",
+   "x": 678,
+   "y": 410,
+   "type": "cat",
+   "card": 4,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.019, 0.097, 0.039, 0.846",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "Under 15 years",
+    "15 years",
+    "16-29 years",
+    "30 years or more"
+   ],
+   "dsCol": "loan_term"
+  },
+  {
+   "id": 14,
+   "name": "ltv",
+   "x": 678,
+   "y": 250,
+   "type": "cat",
+   "card": 8,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.119, 0.077, 0.264, 0.1, 0.125, 0.167, 0.116, 0.034",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "<=60",
+    "60-70",
+    "70-80",
+    "80-90",
+    "90-95",
+    "95-97",
+    "97-100",
+    ">100"
+   ],
+   "dsCol": "ltv"
+  },
+  {
+   "id": 15,
+   "name": "dti",
+   "x": 753,
+   "y": 290,
+   "type": "cat",
+   "card": 8,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.039, 0.145, 0.157, 0.168, 0.117, 0.232, 0.105, 0.037",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "<20%",
+    "20%-<30%",
+    "30%-<36%",
+    "36%-40%",
+    "41%-43%",
+    "44%-49%",
+    "50%-60%",
+    ">60%"
+   ],
+   "dsCol": "dti"
+  },
+  {
+   "id": 16,
+   "name": "aus",
+   "x": 678,
+   "y": 90,
+   "type": "cat",
+   "card": 6,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.663, 0.102, 0.098, 0.006, 0.023, 0.107",
+   "ordinal": false,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "Desktop Underwriter",
+    "Loan Prospector",
+    "FHA TOTAL Scorecard",
+    "USDA GUS",
+    "Other",
+    "None"
+   ],
+   "dsCol": "aus"
+  },
+  {
+   "id": 17,
+   "name": "approved",
+   "x": 831,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.137, 0.863",
+   "ordinal": true,
+   "pos": 1,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "outcome",
+   "labels": [
+    "Denied",
+    "Approved"
+   ],
+   "dsCol": "approved"
+  }
+ ],
+ "edges": [
+  {
+   "id": 18,
+   "a": 1,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 19,
+   "a": 2,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 20,
+   "a": 3,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 21,
+   "a": 4,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 22,
+   "a": 1,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 23,
+   "a": 2,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 24,
+   "a": 3,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 25,
+   "a": 4,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 26,
+   "a": 5,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 27,
+   "a": 2,
+   "b": 7,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 28,
+   "a": 3,
+   "b": 7,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 29,
+   "a": 6,
+   "b": 7,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 30,
+   "a": 2,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 31,
+   "a": 3,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 32,
+   "a": 6,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 33,
+   "a": 7,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 34,
+   "a": 4,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 35,
+   "a": 6,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 36,
+   "a": 6,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 37,
+   "a": 5,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 38,
+   "a": 4,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 39,
+   "a": 8,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 40,
+   "a": 9,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 41,
+   "a": 10,
+   "b": 11,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 42,
+   "a": 1,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 43,
+   "a": 2,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 44,
+   "a": 3,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 45,
+   "a": 4,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 46,
+   "a": 6,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 47,
+   "a": 9,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 48,
+   "a": 10,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 49,
+   "a": 11,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.11,
+   "sign": 1
+  },
+  {
+   "id": 50,
+   "a": 4,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 51,
+   "a": 6,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 52,
+   "a": 9,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 53,
+   "a": 12,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 54,
+   "a": 4,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 55,
+   "a": 6,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 56,
+   "a": 9,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 57,
+   "a": 10,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 58,
+   "a": 12,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 59,
+   "a": 6,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 60,
+   "a": 5,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 61,
+   "a": 10,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 62,
+   "a": 13,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 63,
+   "a": 12,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 64,
+   "a": 12,
+   "b": 16,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 65,
+   "a": 11,
+   "b": 16,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 66,
+   "a": 9,
+   "b": 16,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 67,
+   "a": 15,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 68,
+   "a": 14,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 69,
+   "a": 6,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 70,
+   "a": 10,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 71,
+   "a": 11,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 72,
+   "a": 12,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 73,
+   "a": 9,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 74,
+   "a": 13,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 75,
+   "a": 16,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 76,
+   "a": 5,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 77,
+   "a": 7,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 78,
+   "a": 8,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 79,
+   "a": 1,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 80,
+   "a": 2,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 81,
+   "a": 3,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  },
+  {
+   "id": 82,
+   "a": 4,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.05,
+   "sign": 1
+  }
+ ],
+ "nextId": 83,
+ "dataset": "hmda_tx"
+}

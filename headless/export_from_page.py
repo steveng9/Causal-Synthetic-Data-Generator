@@ -7,7 +7,7 @@ Run it after changing the page's sampler or its built-in examples, then run chec
 The browser parts of the page are replaced by a do-nothing stand-in; the sampler,
 templates and CSV writer run unchanged.
 """
-import glob, hashlib, json, os, shutil, subprocess, sys, tempfile
+import glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAGE = os.path.join(HERE, '..', 'index.html')
@@ -28,9 +28,9 @@ const IS_NODE = typeof process !== 'undefined' && !!(process.versions && process
 const OUT = IS_NODE ? process.argv[2] : ARGV[0];
 const write = IS_NODE ? (p, t) => require('fs').writeFileSync(OUT + '/' + p, t) : (p, t) => imports.gi.GLib.file_set_contents(OUT + '/' + p, t);
 const CASES = %s;
-const keys = Object.keys(TEMPLATES).filter(k => k !== 'empty').concat(Object.keys(DATASETS).map(k => 'ds:' + k));
+const keys = Object.keys(TEMPLATES).filter(k => k !== 'empty').concat(Object.keys(DATASETS).map(k => 'ds:' + k), Object.keys(HAND_GRAPHS).map(k => 'dsg:' + k));
 for (const k of keys) {
-  if (k.startsWith('ds:')) loadDataset(k.slice(3)); else TEMPLATES[k]();
+  if (isDsKey(k)) loadDs(k); else TEMPLATES[k]();
   const f = k.replace(':', '_');
   write('ex_' + f + '.json', JSON.stringify(G));
   for (const [n, sd, cv] of CASES) { cutView = cv; DATA = sampleData(n, sd); if (!DATA.error) write(`ref_${f}_${n}_${sd}_${cv || 'none'}.csv`, toCSV()); }
@@ -62,7 +62,7 @@ def main():
         refs = []
         for f in sorted(glob.glob(os.path.join(tmp, 'ref_*.csv'))):
             key, n, sd, cut = os.path.basename(f)[4:-4].rsplit('_', 3)
-            refs.append(dict(example=key.replace('ds_', 'ds:', 1), rows=int(n), seed=int(sd), cut=None if cut == 'none' else cut,
+            refs.append(dict(example=re.sub(r'^(dsg?)_', r'\1:', key), rows=int(n), seed=int(sd), cut=None if cut == 'none' else cut,
                              sha256=hashlib.sha256(open(f, 'rb').read()).hexdigest()))
         json.dump(refs, open(os.path.join(HERE, 'reference_hashes.json'), 'w'), indent=1)
         print('%d examples, %d reference tables (%s)' % (len(glob.glob(os.path.join(ex, '*.json'))), len(refs), os.path.basename(eng)))

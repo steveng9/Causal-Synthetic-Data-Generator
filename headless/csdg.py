@@ -18,7 +18,7 @@ In Python:
   cols, data = csdg.sample(g, rows=5000, seed=1, cut='cf')   # data[col] is a numpy array
   df = csdg.to_dataframe(cols, data)
 """
-import argparse, json, math, os, sys
+import argparse, json, math, os, re, sys
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -646,7 +646,7 @@ def main(argv=None):
         for f in sorted(os.listdir(EXAMPLES)):
             if f.endswith('.json'):
                 g = load_graph(os.path.join(EXAMPLES, f))
-                k = f[:-5].replace('ds_', 'ds:', 1)
+                k = re.sub(r'^(dsg?)_', r'\1:', f[:-5])
                 obs = sum(nd['role'] != 'hidden' for nd in g['nodes'])
                 print('%-18s %3d nodes (%d in the table), %3d edges' % (k, len(g['nodes']), obs, len(g['edges'])))
         return

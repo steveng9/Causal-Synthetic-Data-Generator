@@ -30,7 +30,7 @@ This page removes the guesswork. You write the graph yourself, so the true struc
 | Control | What it does |
 |---|---|
 | **Graph: Mixed / Directed only / Undirected only** | Which edge kinds are allowed. "Directed only" is a PrivBayes-style Bayesian network, "Undirected only" is an MST-style set of marginals. |
-| **Load example…** | Small graphs that each show one mechanism (below), plus the columns of 11 benchmark datasets (Adult, COMPAS, SNAKE/CPS, SBO, ACS Income CA/TX, ACS Public Coverage CA/TX, CDC Diabetes, HMDA CA/TX). The dataset presets load the real column names, types, cardinalities and roles with no edges, so you draw the graph you believe. |
+| **Load example…** | Small graphs that each show one mechanism (below), plus the columns of 11 benchmark datasets (Adult, COMPAS, SNAKE/CPS, SBO, ACS Income CA/TX, ACS Public Coverage CA/TX, CDC Diabetes, HMDA CA/TX). The dataset presets load the real column names, types, cardinalities and roles. One group loads them with no edges, so you draw the graph you believe. The last group adds the hand-drawn graph each dataset gets in our experiments (the same edges, and the same FTU, CF and DemPar cuts). Its edges are all positive, each with strength min(0.3, 0.9 ÷ the child's number of parents), so you set the mechanisms yourself. |
 | **Rows**, **Seed**, **New seed**, **Generate** | Table size (100 to 500,000 rows) and the random seed. The same graph and seed always give the same table. |
 | **Save CSV** | Downloads the generated table. Hidden nodes are left out, the way they would be missing from a real dataset. |
 | **Save graph / Load graph** | A JSON file with the full graph, plus the edges each fairness rule cuts, so you can reproduce a table or hand the graph to other code. |
@@ -126,6 +126,7 @@ cd headless
 python csdg.py list                                         # the built-in examples
 python csdg.py sample sc_pbmc few_shapes --rows 5000 --seeds 1-20 --out runs/
 python csdg.py sample my_graph.json --cut cf --seeds 1,2,3 --hidden --out runs/
+python csdg.py sample dsg:adult dsg:compas --cut ftu --seeds 1-5 --out runs/   # datasets with their experiment graphs
 python csdg.py cuts hiring                                  # edges each fairness cut removes
 ```
 
@@ -140,7 +141,7 @@ cols, data = csdg.sample(g, rows=5000, seed=1, cut=None, hidden=True)
 df = csdg.to_dataframe(cols, data)             # needs pandas
 ```
 
-`python check.py` confirms the match: it samples 84 tables (every example, with no cut and with each of the three cuts) and compares them with hashes of the page's own output. After you change the sampler or an example in `index.html`, run `python export_from_page.py` (needs `gjs` or `node`). It runs the page's code without a browser and rewrites `examples/` and the hashes.
+`python check.py` confirms the match: it samples 128 tables (every example, with no cut and with each of the three cuts) and compares them with hashes of the page's own output. After you change the sampler or an example in `index.html`, run `python export_from_page.py` (needs `gjs` or `node`). It runs the page's code without a browser and rewrites `examples/` and the hashes.
 
 ## Deploying on GitHub Pages
 

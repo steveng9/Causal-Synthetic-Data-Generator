@@ -1,0 +1,1288 @@
+{
+ "mode": "mixed",
+ "nodes": [
+  {
+   "id": 1,
+   "name": "Sex",
+   "x": 70,
+   "y": 110,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.559, 0.441",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "Female",
+    "Male"
+   ],
+   "dsCol": "Sex"
+  },
+  {
+   "id": 2,
+   "name": "Age",
+   "x": 70,
+   "y": 350,
+   "type": "cat",
+   "card": 13,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.023, 0.029, 0.044, 0.056, 0.064, 0.076, 0.104, 0.121, 0.132, 0.128, 0.092, 0.062, 0.068",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "18-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80+"
+   ],
+   "dsCol": "Age"
+  },
+  {
+   "id": 3,
+   "name": "Education",
+   "x": 133,
+   "y": 268,
+   "type": "cat",
+   "card": 5,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.017, 0.036, 0.249, 0.277, 0.421",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "Elementary or less",
+    "Some high school",
+    "High school graduate",
+    "Some college",
+    "College graduate"
+   ],
+   "dsCol": "Education"
+  },
+  {
+   "id": 4,
+   "name": "Income",
+   "x": 197,
+   "y": 312,
+   "type": "cat",
+   "card": 8,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.039, 0.046, 0.064, 0.078, 0.103, 0.146, 0.169, 0.354",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "protected",
+   "labels": [
+    "<10k",
+    "10-15k",
+    "15-20k",
+    "20-25k",
+    "25-35k",
+    "35-50k",
+    "50-75k",
+    "75k+"
+   ],
+   "dsCol": "Income"
+  },
+  {
+   "id": 5,
+   "name": "BMI",
+   "x": 328,
+   "y": 122,
+   "type": "cat",
+   "card": 6,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.013, 0.272, 0.368, 0.21, 0.082, 0.054",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "<18.5",
+    "18.5-24.9",
+    "25-29.9",
+    "30-34.9",
+    "35-39.9",
+    "40+"
+   ],
+   "dsCol": "BMI"
+  },
+  {
+   "id": 6,
+   "name": "GenHlth",
+   "x": 760,
+   "y": 290,
+   "type": "cat",
+   "card": 5,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.176, 0.352, 0.299, 0.124, 0.048",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "Excellent",
+    "Very good",
+    "Good",
+    "Fair",
+    "Poor"
+   ],
+   "dsCol": "GenHlth"
+  },
+  {
+   "id": 7,
+   "name": "MentHlth",
+   "x": 703,
+   "y": 110,
+   "type": "cat",
+   "card": 3,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.689, 0.214, 0.097",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "0",
+    "1-13",
+    "14-30"
+   ],
+   "dsCol": "MentHlth"
+  },
+  {
+   "id": 8,
+   "name": "PhysHlth",
+   "x": 640,
+   "y": 273,
+   "type": "cat",
+   "card": 3,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.631, 0.235, 0.134",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "0",
+    "1-13",
+    "14-30"
+   ],
+   "dsCol": "PhysHlth"
+  },
+  {
+   "id": 9,
+   "name": "HighBP",
+   "x": 387,
+   "y": 228,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.572, 0.428",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "HighBP"
+  },
+  {
+   "id": 10,
+   "name": "HighChol",
+   "x": 450,
+   "y": 307,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.575, 0.425",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "HighChol"
+  },
+  {
+   "id": 11,
+   "name": "CholCheck",
+   "x": 387,
+   "y": 470,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.037, 0.963",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "CholCheck"
+  },
+  {
+   "id": 12,
+   "name": "Smoker",
+   "x": 257,
+   "y": 365,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.556, 0.444",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "Smoker"
+  },
+  {
+   "id": 13,
+   "name": "Stroke",
+   "x": 577,
+   "y": 318,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.959, 0.041",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "Stroke"
+  },
+  {
+   "id": 14,
+   "name": "HeartDiseaseorAttack",
+   "x": 514,
+   "y": 262,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.906, 0.094",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "admissible",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "HeartDiseaseorAttack"
+  },
+  {
+   "id": 15,
+   "name": "PhysActivity",
+   "x": 260,
+   "y": 443,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.243, 0.757",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "PhysActivity"
+  },
+  {
+   "id": 16,
+   "name": "Fruits",
+   "x": 255,
+   "y": 95,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.367, 0.633",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "Fruits"
+  },
+  {
+   "id": 17,
+   "name": "Veggies",
+   "x": 260,
+   "y": 182,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.188, 0.812",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "Veggies"
+  },
+  {
+   "id": 18,
+   "name": "HvyAlcoholConsump",
+   "x": 260,
+   "y": 260,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.944, 0.056",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "HvyAlcoholConsump"
+  },
+  {
+   "id": 19,
+   "name": "AnyHealthcare",
+   "x": 260,
+   "y": 521,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.05, 0.95",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "AnyHealthcare"
+  },
+  {
+   "id": 20,
+   "name": "NoDocbcCost",
+   "x": 327,
+   "y": 332,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.916, 0.084",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "NoDocbcCost"
+  },
+  {
+   "id": 21,
+   "name": "DiffWalk",
+   "x": 703,
+   "y": 352,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.83, 0.17",
+   "ordinal": true,
+   "pos": null,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "other",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "DiffWalk"
+  },
+  {
+   "id": 22,
+   "name": "Diabetes_binary",
+   "x": 837,
+   "y": 290,
+   "type": "cat",
+   "card": 2,
+   "shape": "custom",
+   "skew": 0.5,
+   "weights": "0.859, 0.141",
+   "ordinal": true,
+   "pos": 1,
+   "cshape": "normal",
+   "lo": 0,
+   "hi": 1,
+   "integer": false,
+   "role": "outcome",
+   "labels": [
+    "No",
+    "Yes"
+   ],
+   "dsCol": "Diabetes_binary"
+  }
+ ],
+ "edges": [
+  {
+   "id": 23,
+   "a": 2,
+   "b": 3,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 24,
+   "a": 1,
+   "b": 3,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 25,
+   "a": 3,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 26,
+   "a": 2,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 27,
+   "a": 1,
+   "b": 4,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 28,
+   "a": 4,
+   "b": 19,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 29,
+   "a": 3,
+   "b": 19,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 30,
+   "a": 2,
+   "b": 19,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 31,
+   "a": 4,
+   "b": 20,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 32,
+   "a": 19,
+   "b": 20,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 33,
+   "a": 19,
+   "b": 11,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 34,
+   "a": 20,
+   "b": 11,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 35,
+   "a": 2,
+   "b": 11,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 36,
+   "a": 1,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 37,
+   "a": 2,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 38,
+   "a": 3,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 39,
+   "a": 4,
+   "b": 12,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 40,
+   "a": 1,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 41,
+   "a": 2,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 42,
+   "a": 3,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 43,
+   "a": 4,
+   "b": 15,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 44,
+   "a": 1,
+   "b": 16,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 45,
+   "a": 3,
+   "b": 16,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 46,
+   "a": 4,
+   "b": 16,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 47,
+   "a": 1,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 48,
+   "a": 3,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 49,
+   "a": 4,
+   "b": 17,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 50,
+   "a": 1,
+   "b": 18,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 51,
+   "a": 2,
+   "b": 18,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 52,
+   "a": 4,
+   "b": 18,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 53,
+   "a": 15,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 54,
+   "a": 16,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 55,
+   "a": 17,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 56,
+   "a": 2,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 57,
+   "a": 1,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 58,
+   "a": 4,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 59,
+   "a": 3,
+   "b": 5,
+   "kind": "dir",
+   "strength": 0.12,
+   "sign": 1
+  },
+  {
+   "id": 60,
+   "a": 5,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 61,
+   "a": 2,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 62,
+   "a": 1,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 63,
+   "a": 12,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 64,
+   "a": 18,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 65,
+   "a": 15,
+   "b": 9,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 66,
+   "a": 5,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 67,
+   "a": 2,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 68,
+   "a": 1,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 69,
+   "a": 11,
+   "b": 10,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 70,
+   "a": 9,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 71,
+   "a": 10,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 72,
+   "a": 12,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 73,
+   "a": 2,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 74,
+   "a": 1,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 75,
+   "a": 5,
+   "b": 14,
+   "kind": "dir",
+   "strength": 0.15,
+   "sign": 1
+  },
+  {
+   "id": 76,
+   "a": 9,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 77,
+   "a": 10,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 78,
+   "a": 12,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 79,
+   "a": 2,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 80,
+   "a": 14,
+   "b": 13,
+   "kind": "dir",
+   "strength": 0.18,
+   "sign": 1
+  },
+  {
+   "id": 81,
+   "a": 2,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 82,
+   "a": 5,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 83,
+   "a": 14,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 84,
+   "a": 13,
+   "b": 8,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 85,
+   "a": 4,
+   "b": 7,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 86,
+   "a": 1,
+   "b": 7,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 87,
+   "a": 8,
+   "b": 7,
+   "kind": "dir",
+   "strength": 0.3,
+   "sign": 1
+  },
+  {
+   "id": 88,
+   "a": 2,
+   "b": 21,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 89,
+   "a": 5,
+   "b": 21,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 90,
+   "a": 13,
+   "b": 21,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 91,
+   "a": 8,
+   "b": 21,
+   "kind": "dir",
+   "strength": 0.22,
+   "sign": 1
+  },
+  {
+   "id": 92,
+   "a": 5,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 93,
+   "a": 9,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 94,
+   "a": 14,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 95,
+   "a": 13,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 96,
+   "a": 15,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 97,
+   "a": 4,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 98,
+   "a": 2,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 99,
+   "a": 8,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 100,
+   "a": 7,
+   "b": 6,
+   "kind": "dir",
+   "strength": 0.1,
+   "sign": 1
+  },
+  {
+   "id": 101,
+   "a": 5,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 102,
+   "a": 9,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 103,
+   "a": 10,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 104,
+   "a": 2,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 105,
+   "a": 15,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 106,
+   "a": 14,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 107,
+   "a": 12,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 108,
+   "a": 18,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 109,
+   "a": 19,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 110,
+   "a": 11,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 111,
+   "a": 6,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 112,
+   "a": 21,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 113,
+   "a": 1,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 114,
+   "a": 4,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  },
+  {
+   "id": 115,
+   "a": 3,
+   "b": 22,
+   "kind": "dir",
+   "strength": 0.06,
+   "sign": 1
+  }
+ ],
+ "nextId": 116,
+ "dataset": "cdc_diabetes"
+}
