@@ -1,0 +1,320 @@
+[
+ {
+  "title": "Basic shapes",
+  "sub": "Two and three nodes: the building blocks.",
+  "graphs": [
+   {
+    "title": "Direct effect",
+    "note": "S causes Y and nothing else.",
+    "nodes": "S 0 1, Y 2 1",
+    "edges": "S>Y"
+   },
+   {
+    "title": "Unrelated",
+    "note": "Y has a cause; S is not connected to anything.",
+    "nodes": "S 0 2, X 1 0, Y 2 1",
+    "edges": "X>Y"
+   },
+   {
+    "title": "Mediator",
+    "note": "S reaches Y only through M.",
+    "nodes": "S 0 1, M 1 0, Y 2 1",
+    "edges": "S>M M>Y"
+   },
+   {
+    "title": "Direct and mediated",
+    "note": "S reaches Y directly and through M.",
+    "nodes": "S 0 1, M 1 0, Y 2 1",
+    "edges": "S>M M>Y S>Y"
+   },
+   {
+    "title": "Observed confounder",
+    "note": "Z causes both S and Y. S has no effect on Y.",
+    "nodes": "Z 1 0, S 0 1, Y 2 1",
+    "edges": "Z>S Z>Y"
+   },
+   {
+    "title": "Collider",
+    "note": "S and Y both cause C, and are independent of each other.",
+    "nodes": "S 0 0, Y 2 0, C 1 1",
+    "edges": "S>C Y>C"
+   },
+   {
+    "title": "Outcome causes S",
+    "note": "The arrow points from Y to S.",
+    "nodes": "Y 0 1, S 2 1",
+    "edges": "Y>S"
+   },
+   {
+    "title": "Y has a child",
+    "note": "S causes Y, and Y causes a later column X.",
+    "nodes": "S 0 1, Y 1 1, X 2 1",
+    "edges": "S>Y Y>X"
+   }
+  ]
+ },
+ {
+  "title": "Proxies and admissible paths",
+  "sub": "A marks a column the analyst allows to carry S's influence; P marks a proxy that is not allowed.",
+  "graphs": [
+   {
+    "title": "Admissible mediator",
+    "note": "S reaches Y only through A.",
+    "nodes": "S 0 1, A 1 0, Y 2 1",
+    "edges": "S>A A>Y"
+   },
+   {
+    "title": "Admissible plus direct",
+    "note": "S reaches Y through A and directly.",
+    "nodes": "S 0 1, A 1 0, Y 2 1",
+    "edges": "S>A A>Y S>Y"
+   },
+   {
+    "title": "Proxy beside admissible",
+    "note": "One allowed path through A and one proxy path through P.",
+    "nodes": "S 0 1, A 1 0, P 1 2, Y 2 1",
+    "edges": "S>A A>Y S>P P>Y"
+   },
+   {
+    "title": "Two proxies",
+    "note": "Two parallel proxy paths.",
+    "nodes": "S 0 1, P1 1 0, P2 1 2, Y 2 1",
+    "edges": "S>P1 P1>Y S>P2 P2>Y"
+   },
+   {
+    "title": "Proxy chain",
+    "note": "S reaches Y through two proxies in a row.",
+    "nodes": "S 0 1, P 1 0, Q 2 0, Y 3 1",
+    "edges": "S>P P>Q Q>Y"
+   },
+   {
+    "title": "Proxy feeds admissible",
+    "note": "S shapes A through P, and only A touches Y.",
+    "nodes": "S 0 1, P 1 0, A 2 0, Y 3 1",
+    "edges": "S>P P>A A>Y"
+   },
+   {
+    "title": "Proxy mixes S with a real cause",
+    "note": "P is caused by S and by X; only X causes Y.",
+    "nodes": "S 0 1, X 1 0, P 1 2, Y 2 1",
+    "edges": "X>Y X>P S>P"
+   },
+   {
+    "title": "Admissible collider",
+    "note": "A is caused by S and by Z, and Z also causes Y.",
+    "nodes": "S 0 1, A 1 0, Z 2 0, Y 2 1",
+    "edges": "S>A Z>A A>Y Z>Y"
+   }
+  ]
+ },
+ {
+  "title": "Hidden variables",
+  "sub": "Dashed nodes are real causes that never appear as columns.",
+  "graphs": [
+   {
+    "title": "Hidden confounder",
+    "note": "U causes both S and Y; there is no visible edge between them.",
+    "nodes": "U~ 1 0, S 0 1, Y 2 1",
+    "edges": "U>S U>Y"
+   },
+   {
+    "title": "Hidden mediator",
+    "note": "The only path from S to Y runs through an unrecorded column.",
+    "nodes": "S 0 1, U~ 1 0, Y 2 1",
+    "edges": "S>U U>Y"
+   },
+   {
+    "title": "Hidden cause of Y",
+    "note": "U adds noise to Y and is unrelated to S.",
+    "nodes": "S 0 1, U~ 1 0, Y 2 1",
+    "edges": "S>Y U>Y"
+   },
+   {
+    "title": "Hidden confounder plus direct",
+    "note": "U causes S and Y, and S also causes Y.",
+    "nodes": "U~ 1 0, S 0 1, Y 2 1",
+    "edges": "U>S U>Y S>Y"
+   },
+   {
+    "title": "Hidden confounder of a mediator",
+    "note": "U causes the mediator M and Y.",
+    "nodes": "S 0 1, M 1 1, Y 2 1, U~ 1.5 0",
+    "edges": "S>M M>Y U>M U>Y"
+   },
+   {
+    "title": "Hidden root behind a proxy",
+    "note": "U causes S and P; P causes Y.",
+    "nodes": "S 0 1, U~ 1 0, P 2 0, Y 2 1",
+    "edges": "U>S U>P P>Y"
+   },
+   {
+    "title": "Recorded label",
+    "note": "T is the true quality and is never recorded. Y is the label, and S changes it.",
+    "nodes": "X 0 0, T~ 1 0, S 0 1, Y 2 1",
+    "edges": "X>T T>Y S>Y"
+   },
+   {
+    "title": "Hidden cause of an admissible column",
+    "note": "A is caused by S and by U, and U also causes Y.",
+    "nodes": "S 0 1, A 1 0, U~ 2 0, Y 2 1",
+    "edges": "S>A U>A A>Y U>Y"
+   },
+   {
+    "title": "Instrument with hidden confounder",
+    "note": "I moves S only; U confounds S and Y.",
+    "nodes": "I 0 0, S 0 1, U~ 1 0, Y 2 1",
+    "edges": "I>S U>S U>Y S>Y"
+   }
+  ]
+ },
+ {
+  "title": "Colliders and selection",
+  "sub": "Shapes where a shared child or a conditioned column opens a path.",
+  "graphs": [
+   {
+    "title": "M-bias",
+    "note": "C is a child of S's cause and of Y's cause.",
+    "nodes": "Z1 0 0, Z2 2 0, C 1 1, S 0 2, Y 2 2",
+    "edges": "Z1>S Z1>C Z2>C Z2>Y"
+   },
+   {
+    "title": "Butterfly",
+    "note": "M-bias where C also causes S and Y.",
+    "nodes": "Z1 0 0, Z2 2 0, C 1 1, S 0 2, Y 2 2",
+    "edges": "Z1>S Z1>C Z2>C Z2>Y C>S C>Y"
+   },
+   {
+    "title": "Shared child plus direct",
+    "note": "S causes Y, and both cause C.",
+    "nodes": "S 0 0, Y 2 0, C 1 1",
+    "edges": "S>Y S>C Y>C"
+   },
+   {
+    "title": "Descendant of a collider",
+    "note": "S and Y cause C, and C causes D.",
+    "nodes": "S 0 0, Y 2 0, C 1 1, D 1 2",
+    "edges": "S>C Y>C C>D"
+   },
+   {
+    "title": "Selection record",
+    "note": "C records who was selected; it depends on S and Y. X causes Y.",
+    "nodes": "S 0 1, C 1 0, Y 2 1, X 1 2",
+    "edges": "S>C Y>C X>Y"
+   }
+  ]
+ },
+ {
+  "title": "Several protected attributes",
+  "sub": "Two protected columns, as in race and sex.",
+  "graphs": [
+   {
+    "title": "Two independent attributes",
+    "note": "S1 and S2 each cause Y.",
+    "nodes": "S1 0 0, S2 0 2, Y 2 1",
+    "edges": "S1>Y S2>Y"
+   },
+   {
+    "title": "One attribute causes another",
+    "note": "S1 causes S2, and S2 causes Y.",
+    "nodes": "S1 0 1, S2 1 0, Y 2 1",
+    "edges": "S1>S2 S2>Y"
+   },
+   {
+    "title": "Intersection through a mediator",
+    "note": "S1 and S2 meet in M, which causes Y.",
+    "nodes": "S1 0 0, S2 0 2, M 1 1, Y 2 1",
+    "edges": "S1>M S2>M M>Y"
+   },
+   {
+    "title": "Direct and proxy",
+    "note": "S1 causes Y directly; S2 acts through a proxy.",
+    "nodes": "S1 0 0, S2 0 2, P 1 2, Y 2 1",
+    "edges": "S1>Y S2>P P>Y"
+   }
+  ]
+ },
+ {
+  "title": "After the outcome",
+  "sub": "Columns recorded after Y, which a downstream model might still use.",
+  "graphs": [
+   {
+    "title": "Later feature",
+    "note": "S reaches Y through X, and Y causes W.",
+    "nodes": "S 0 1, X 1 0, Y 2 1, W 3 1",
+    "edges": "S>X X>Y Y>W"
+   },
+   {
+    "title": "Later feature that also depends on S",
+    "note": "W comes after Y and also depends on S.",
+    "nodes": "S 0 1, X 1 0, Y 2 0, W 2 2",
+    "edges": "S>X X>Y Y>W S>W"
+   },
+   {
+    "title": "Outcome as a mediator",
+    "note": "S causes Y and a score R; Y causes W, and W also feeds R.",
+    "nodes": "S 0 1, Y 1.5 1, W 2.2 0, R 3 1",
+    "edges": "S>Y Y>W W>R S>R"
+   }
+  ]
+ },
+ {
+  "title": "Five and six nodes",
+  "sub": "Combinations of the shapes above, including two shaped like project datasets.",
+  "graphs": [
+   {
+    "title": "Diamond with a cross link",
+    "note": "Two paths from S to Y, with X1 also causing X2.",
+    "nodes": "S 0 1, X1 1 0, X2 1 2, Y 2 1",
+    "edges": "S>X1 S>X2 X1>X2 X1>Y X2>Y"
+   },
+   {
+    "title": "Census-style",
+    "note": "S sex, M marital status, A education, Z age.",
+    "nodes": "S 0 1, Z 1 0, M 1 1, A 1 2, Y 2 1",
+    "edges": "S>M S>A Z>M Z>Y A>Y M>Y"
+   },
+   {
+    "title": "Recidivism-style",
+    "note": "S race, Z age, P prior counts.",
+    "nodes": "Z 1 0, S 0 1, P 1 1, Y 2 1",
+    "edges": "S>P Z>P Z>Y P>Y"
+   },
+   {
+    "title": "Front door",
+    "note": "U confounds S and Y; all of S's effect passes through M.",
+    "nodes": "S 0 1, M 1 1, Y 2 1, U~ 1 0",
+    "edges": "S>M M>Y U>S U>Y"
+   },
+   {
+    "title": "Every forward edge",
+    "note": "All 10 edges allowed by the order S, A, X, M, Y.",
+    "nodes": "S 0 1, A 1 0, X 1 2, M 2 1, Y 3 1",
+    "edges": "S>A S>X S>M S>Y A>X A>M A>Y X>M X>Y M>Y"
+   },
+   {
+    "title": "Confounded chain",
+    "note": "Each link of S to M to Y has its own observed confounder.",
+    "nodes": "Z1 0.5 0, Z2 1.5 0, S 0 1, M 1 1, Y 2 1",
+    "edges": "Z1>S Z1>M Z2>M Z2>Y S>M M>Y"
+   },
+   {
+    "title": "Proxy, admissible and hidden",
+    "note": "U causes the proxy P and Y.",
+    "nodes": "S 0 1, A 1 0, P 1 2, U~ 2 2, Y 2 1",
+    "edges": "S>A A>Y S>P P>Y U>P U>Y"
+   },
+   {
+    "title": "Isolated S in a rich world",
+    "note": "Four columns shape Y; S touches none of them.",
+    "nodes": "X 0 0, Z 1 0, W 1 2, S 0 2, Y 2 1",
+    "edges": "X>Y Z>Y W>Y X>Z"
+   },
+   {
+    "title": "Two routes, one hidden",
+    "note": "S reaches Y through A and through M then X; U causes A and Y.",
+    "nodes": "S 0 1, A 1 0, U~ 2 0, M 1 2, X 2 2, Y 3 1",
+    "edges": "S>A A>Y S>M M>X X>Y U>A U>Y"
+   }
+  ]
+ }
+]

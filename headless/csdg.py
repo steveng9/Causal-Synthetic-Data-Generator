@@ -454,15 +454,21 @@ def fair_cuts(g, rule):
 
 
 # ---------------- sampler (sampleData in the page) ----------------
-def sample(g, rows=5000, seed=7, cut=None, hidden=False, return_warnings=False):
-    """Returns (column names, {column: numpy array}). Categorical columns hold integer codes."""
+def sample(g, rows=5000, seed=7, cut=None, hidden=False, return_warnings=False, cut_strength=1.0):
+    """Returns (column names, {column: numpy array}). Categorical columns hold integer codes.
+
+    `cut` is a rule name ('ftu', 'cf', 'dp') or a set of edge ids to cut. `cut_strength` below 1
+    shuffles the cut parents for that share of the rows only (the same rows for all of a child's
+    cut parents), as the experiments' partial cuts do. The page has no partial cut; 1 matches it."""
     g = normalize(g)
     n = int(rows)
     nodes = {nd['id']: nd for nd in g['nodes']}
     comps, order = structure(g)
     seed0 = (int(seed) & M32) or 1
     gauss = Gauss(Rng(seed0))
-    cutset = fair_cuts(g, cut)
+    cutset = set(cut) if isinstance(cut, (set, frozenset, list, tuple)) else fair_cuts(g, cut)
+    if not 0.0 <= cut_strength <= 1.0:
+        raise ValueError(f'cut_strength {cut_strength} outside [0, 1]')
     codes, vals, u, score, warnings = {}, {}, {}, {}, []
 
     def shuffled(e, a):
@@ -526,6 +532,9 @@ def sample(g, rows=5000, seed=7, cut=None, hidden=False, return_warnings=False):
                 warnings.append('%s: incoming strengths add to %.2f; scaled to 0.97' % (nd['name'], tot))
             ws = [e['sign'] * math.sqrt(e['strength'] * sc) for e in pe]
             ps = [shuffled(e, score[e['a']]) if e['id'] in cutset else score[e['a']] for e in pe]
+            if cut_strength < 1.0 and any(e['id'] in cutset for e in pe):
+                keep = Rng((seed0 ^ ((nid * 2246822519 + 0x5bd1e995) & M32)) & M32 or 1).uniform(n) >= cut_strength
+                ps = [np.where(keep, score[e['a']], q) if e['id'] in cutset else q for e, q in zip(pe, ps)]
             md = [_mod_spec(g, nodes, e) for e in pe]
             c = math.sqrt(max(0.03, 1 - tot * sc))
             z = c * E[:, i]

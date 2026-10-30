@@ -141,6 +141,8 @@ cols, data = csdg.sample(g, rows=5000, seed=1, cut=None, hidden=True)
 df = csdg.to_dataframe(cols, data)             # needs pandas
 ```
 
+Two options exist only in Python. `cut` also takes a set of edge ids, to cut edges of your choosing. `cut_strength=0.5` makes a partial cut: the cut parents are shuffled for that share of each child's rows only, the same rows for all of a child's cut parents. The page has no partial cut, so `check.py` covers only the default strength of 1.
+
 `python check.py` confirms the match: it samples 128 tables (every example, with no cut and with each of the three cuts) and compares them with hashes of the page's own output. After you change the sampler or an example in `index.html`, run `python export_from_page.py` (needs `gjs` or `node`). It runs the page's code without a browser and rewrites `examples/` and the hashes.
 
 ## Deploying on GitHub Pages
