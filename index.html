@@ -1142,8 +1142,8 @@ function hull(pts) {
   for (const p of pts.slice().reverse()) { while (hi.length >= 2 && cross(hi[hi.length - 2], hi[hi.length - 1], p) <= 0) hi.pop(); hi.push(p); }
   return lo.slice(0, -1).concat(hi.slice(0, -1));
 }
-// Edges our generation-time cut removes, on the directed part of the graph only.
-// Same rules as select_biased_edges in fairness/ftu.py, dp.py and cf.py. Returns edge ids.
+// Edges our generation-time cut removes. Returns edge ids. FTU and CF follow select_biased_edges in
+// fairness/ftu.py and cf.py; DemPar follows DECAF Cor. 3 (dp.py cuts directed S -> Y paths only).
 const CUT_NAME = {ftu: 'FTU', cf: 'CF', dp: 'DemPar'};
 function fairCuts(rule) {
   const dir = G.edges.filter(e => e.kind === 'dir');
@@ -1153,45 +1153,38 @@ function fairCuts(rule) {
   const S = ids('protected'), Y = ids('outcome'), A = new Set(ids('admissible'));
   const cut = new Set(), mark = (a, b) => { const e = dir.find(e => e.a === a && e.b === b); if (e) cut.add(e.id); };
   if (!S.length || !Y.length) return cut;
-  const desc = s => { const seen = new Set([s]), st = [s]; while (st.length) for (const c of kid.get(st.pop())) if (!seen.has(c)) { seen.add(c); st.push(c); } return seen; };
   if (rule === 'ftu') { for (const e of dir) if (S.includes(e.a) && Y.includes(e.b)) cut.add(e.id); }
-  else if (rule === 'dp') {
-    // Every directed S -> ... -> Y path loses its last edge.
-    for (const s of S) { const D = desc(s); for (const y of Y) if (y !== s && D.has(y)) for (const u of par.get(y)) if (D.has(u)) mark(u, y); }
-  } else if (rule === 'cf') {
+  else {
     // DECAF Cor. 1: a non-admissible member of Y's Markov boundary that is not
     // d-separated from S given the admissible set loses its edge into the boundary.
-    const tied = v => S.includes(v) || S.some(s => !dsep(v, s, new Set([...A].filter(a => a !== v)), par));
+    // DemPar is the same test with no admissible columns (DECAF Cor. 3).
+    const R = rule === 'cf' ? A : new Set();
+    const tied = v => S.includes(v) || S.some(s => !dsep(v, s, new Set([...R].filter(a => a !== v)), par));
     for (const y of Y) {
-      for (const u of par.get(y)) if (!A.has(u) && tied(u)) mark(u, y);
+      for (const u of par.get(y)) if (!R.has(u) && tied(u)) mark(u, y);
       for (const c of kid.get(y)) {
-        if (!A.has(c) && tied(c)) mark(y, c);
-        for (const sp of par.get(c)) if (sp !== y && !A.has(sp) && tied(sp)) mark(sp, c);
+        if (!R.has(c) && tied(c)) mark(y, c);
+        for (const sp of par.get(c)) if (sp !== y && !R.has(sp) && tied(sp)) mark(sp, c);
       }
     }
   }
   // Undirected edges: the MST-side rule (ftu.py filter_candidates, dp.py / cf.py allow_edge).
-  // Edges are taken strongest first, as Kruskal does, and one is dropped if keeping it would join a
-  // protected node to an outcome (DemPar), or do so by a path with no admissible node on it (CF).
-  // Joins the kept directed edges already make are left to the directed rule above.
+  // Edges are taken strongest first, as Kruskal does. A — B is dropped if, through the edges kept so far
+  // (directed ones included, in either direction), one end reaches a protected node and the other an
+  // outcome, so the edge would open a new route between them. For CF, a route through an admissible node
+  // doesn't count.
   const und = G.edges.filter(e => e.kind === 'und');
   if (!und.length) return cut;
   if (rule === 'ftu') { for (const e of und) if ((S.includes(e.a) && Y.includes(e.b)) || (S.includes(e.b) && Y.includes(e.a))) cut.add(e.id); return cut; }
   const block = rule === 'cf' ? A : new Set();
-  const joined = edges => {
-    const nb = new Map(G.nodes.map(n => [n.id, []]));
-    for (const e of edges) { nb.get(e.a).push(e.b); nb.get(e.b).push(e.a); }
-    let k = 0;
-    for (const s of S) {
-      const seen = new Set([s]), st = [s];
-      while (st.length) { const v = st.pop(); for (const w of nb.get(v)) if (!seen.has(w)) { seen.add(w); if (!block.has(w)) st.push(w); } }
-      for (const y of Y) if (y !== s && seen.has(y)) k++;
-    }
-    return k;
-  };
-  const kept = dir.filter(e => !cut.has(e.id)), base = joined(kept);
+  const nb = new Map(G.nodes.map(n => [n.id, []]));
+  const link = e => { nb.get(e.a).push(e.b); nb.get(e.b).push(e.a); };
+  // Nodes a route from the sources can pass through: the sources, and every node reached without crossing a blocker.
+  const open = src => { const seen = new Set(src), st = [...src]; while (st.length) for (const w of nb.get(st.pop())) if (!seen.has(w) && !block.has(w)) { seen.add(w); st.push(w); } return seen; };
+  for (const e of dir) if (!cut.has(e.id)) link(e);
   for (const e of [...und].sort((a, b) => b.strength - a.strength || a.id - b.id)) {
-    if (joined([...kept, e]) > base) cut.add(e.id); else kept.push(e);
+    const fs = open(S), fy = open(Y);
+    if ((fs.has(e.a) && fy.has(e.b)) || (fs.has(e.b) && fy.has(e.a))) cut.add(e.id); else link(e);
   }
   return cut;
 }
@@ -1212,7 +1205,7 @@ function cutsHTML() {
   if (lastStruct && lastStruct.errors.length) return h + `<p class="help">Fix the graph errors first: the cuts need an acyclic graph.</p></div>`;
   h += `<dl class="cuts">${['ftu', 'cf', 'dp'].map(r => { const c = [...fairCuts(r)].map(id => edgeById(id));
     return `<dt class="${cutView === r ? 'on' : ''}">${CUT_NAME[r]}</dt><dd>${c.length ? c.map(e => esc(nodeById(e.a).name) + ' → ' + esc(nodeById(e.b).name)).join('<br>') : '<span style="color:var(--muted)">nothing to cut</span>'}</dd>`; }).join('')}</dl>
-  <p class="help">FTU cuts direct protected → outcome edges. DemPar cuts the last edge of every directed path from a protected node to an outcome. CF (DECAF Cor. 1) cuts a Markov-boundary member of the outcome that is not d-separated from the protected nodes given the admissible ones.${G.edges.some(e => e.kind === 'und') ? ' <b>Undirected edges</b> follow the MST rule instead: strongest first, an edge is dropped if it would join a protected node to an outcome (DemPar), or join them by a path with no admissible node (CF); FTU drops direct protected — outcome links.' : ''} ${applyCut ? (cutView ? ` <b>Applied:</b> the table is generated with the ${CUT_NAME[cutView]} cuts snipped (a cut directed edge's parent is shuffled across rows before its child is drawn, as DECAF does; a cut undirected edge is left out of the joint, as MST does).` : ' Pick a rule above to generate the table with its cuts snipped.') : ' Shown only: <b>Apply to sample</b> is off, so the table uses every edge.'}</p></div>`;
+  <p class="help">FTU cuts direct protected → outcome edges. CF (DECAF Cor. 1) cuts a Markov-boundary member of the outcome that is not d-separated from the protected nodes given the admissible ones. DemPar is CF with no admissible columns (DECAF Cor. 3), so it also cuts routes that run against the arrows, such as a common cause of both.${G.edges.some(e => e.kind === 'und') ? ' <b>Undirected edges</b> follow the MST rule instead: strongest first, an edge is dropped if it would open a new route between a protected node and an outcome through the edges kept so far (DemPar), or a route with no admissible node on it (CF); FTU drops direct protected — outcome links.' : ''} ${applyCut ? (cutView ? ` <b>Applied:</b> the table is generated with the ${CUT_NAME[cutView]} cuts snipped (a cut directed edge's parent is shuffled across rows before its child is drawn, as DECAF does; a cut undirected edge is left out of the joint, as MST does).` : ' Pick a rule above to generate the table with its cuts snipped.') : ' Shown only: <b>Apply to sample</b> is off, so the table uses every edge.'}</p></div>`;
   return h;
 }
 function renderGraph() {

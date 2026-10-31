@@ -11,7 +11,7 @@
   "rows": 300,
   "seed": 5,
   "cut": "dp",
-  "sha256": "681c0901482b94cc723f31aaf96665894060006027fa9024141998391cfc8e96"
+  "sha256": "7dae16a486288e51e630ccce8bbff7ed8c8192f2df079e21a82367e070ae8135"
  },
  {
   "example": "confounder",
@@ -487,7 +487,7 @@
   "rows": 300,
   "seed": 5,
   "cut": "dp",
-  "sha256": "79831be06dbbebd25a5cc13dd2cae01ceed1db305ed61f58031b65f3c4f267e5"
+  "sha256": "1d3346e94aba8612d4f339fec311ceb208be21456268785ad55e4aa326ed4c79"
  },
  {
   "example": "dsg:cdc_diabetes",

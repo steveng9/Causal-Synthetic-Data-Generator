@@ -157,8 +157,8 @@ def header(fig, ytop):
         fig.text((x + 0.2) / PW, yy / PH, name, fontsize=7.5, color=INK, fontweight='bold', va='center')
         x += 0.85
     fig.text(x / PW, yy / PH,
-             "Cut marks sit in the order FTU, DemPar, CF along each edge. FTU cuts S→Y. DemPar cuts every edge into Y from a descendant of S. "
-             "CF cuts the non-admissible edges at Y that are tied to S given A.",
+             "Cut marks sit in the order FTU, DemPar, CF along each edge. FTU cuts S→Y. CF cuts the non-admissible edges at Y that are tied to S given A. "
+             "DemPar is CF with no admissible columns.",
              fontsize=6.6, color=INK2, va='center')
     yy -= 0.27
     fig.text(MX / PW, yy / PH,

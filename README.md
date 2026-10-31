@@ -30,7 +30,7 @@ This page removes the guesswork. You write the graph yourself, so the true struc
 | Control | What it does |
 |---|---|
 | **Graph: Mixed / Directed only / Undirected only** | Which edge kinds are allowed. "Directed only" is a PrivBayes-style Bayesian network, "Undirected only" is an MST-style set of marginals. |
-| **Load example…** | Small graphs that each show one mechanism (below), plus the columns of 11 benchmark datasets (Adult, COMPAS, SNAKE/CPS, SBO, ACS Income CA/TX, ACS Public Coverage CA/TX, CDC Diabetes, HMDA CA/TX). The dataset presets load the real column names, types, cardinalities and roles. One group loads them with no edges, so you draw the graph you believe. The last group adds the hand-drawn graph each dataset gets in our experiments (the same edges, and the same FTU, CF and DemPar cuts). Its edges are all positive, each with strength min(0.3, 0.9 ÷ the child's number of parents), so you set the mechanisms yourself. |
+| **Load example…** | Small graphs that each show one mechanism (below), plus the columns of 11 benchmark datasets (Adult, COMPAS, SNAKE/CPS, SBO, ACS Income CA/TX, ACS Public Coverage CA/TX, CDC Diabetes, HMDA CA/TX). The dataset presets load the real column names, types, cardinalities and roles. One group loads them with no edges, so you draw the graph you believe. The last group adds the hand-drawn graph each dataset gets in our experiments (the same edges, and the same FTU and CF cuts; DemPar matches too except on CDC Diabetes, where the page also cuts `Age → Diabetes_binary` because Age causes two protected columns). Its edges are all positive, each with strength min(0.3, 0.9 ÷ the child's number of parents), so you set the mechanisms yourself. |
 | **Rows**, **Seed**, **New seed**, **Generate** | Table size (100 to 500,000 rows) and the random seed. The same graph and seed always give the same table. |
 | **Save CSV** | Downloads the generated table. Hidden nodes are left out, the way they would be missing from a real dataset. |
 | **Save graph / Load graph** | A JSON file with the full graph, plus the edges each fairness rule cuts, so you can reproduce a table or hand the graph to other code. |
@@ -58,13 +58,13 @@ The page also remembers your last graph in the browser's local storage. A link c
 
 ### Fairness cuts
 
-**Show cuts** highlights the edges that a generation-time cut removes under each fairness definition. These are the rules used in our experiments, adapted from DECAF.
+**Show cuts** highlights the edges that a generation-time cut removes under each fairness definition. FTU and CF are the rules used in our experiments, adapted from DECAF.
 
 - **FTU** (fairness through unawareness) cuts the direct edges from S to Y.
 - **CF** (conditional fairness, DECAF's Corollary 1) finds the members of Y's Markov boundary that are not d-separated from S given the admissible nodes, and cuts the edge that carries S into each of them. The goal is no outcome gap between groups among people with the same admissible values.
-- **DemPar** (demographic parity) cuts the last edge of every directed path from S to Y. The goal is no outcome gap between groups at all.
+- **DemPar** (demographic parity, DECAF's Corollary 3) is CF with no admissible nodes. It also cuts routes that run against the arrows: a common cause of S and Y, Y → S, or a child that S and Y share. The goal is no outcome gap between groups at all.
 
-Undirected edges follow the MST rule instead: links are taken strongest first, and a link is dropped if it would join S to Y (DemPar), join them by a path with no admissible node (CF), or join S to Y directly (FTU).
+Undirected edges follow the MST rule instead: links are taken strongest first, and a link A — B is dropped if, through the edges kept so far (directed ones included, in either direction), A reaches S and B reaches Y, or the other way round. The link would then open a new route between S and Y (DemPar), a route with no admissible node on it (CF), or a direct one (FTU).
 
 With **Apply to sample** ticked, the table is regenerated with the cut edges removed. A cut directed edge is removed the way DECAF removes it: when the child is drawn, the cut parent's column is shuffled across rows, so the child sees a value with the right distribution but no link to the row. Cut undirected links are removed from their block. With it unticked, the cuts are only drawn on the graph.
 

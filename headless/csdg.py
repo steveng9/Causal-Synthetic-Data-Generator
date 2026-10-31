@@ -386,35 +386,21 @@ def fair_cuts(g, rule):
     if not S or not Y:
         return cut
 
-    def desc(s):
-        seen, st = {s}, [s]
-        while st:
-            for c in kid[st.pop()]:
-                if c not in seen:
-                    seen.add(c)
-                    st.append(c)
-        return seen
     if rule == 'ftu':
         cut |= {e['id'] for e in dr if e['a'] in S and e['b'] in Y}
-    elif rule == 'dp':
-        for s in S:
-            D = desc(s)
-            for y in Y:
-                if y != s and y in D:
-                    for u in par[y]:
-                        if u in D:
-                            mark(u, y)
-    elif rule == 'cf':
-        tied = lambda v: v in S or any(not _dsep(v, s, {a for a in A if a != v}, par) for s in S)
+    elif rule in ('cf', 'dp'):
+        # DECAF Cor. 1; DemPar is the same test with no admissible columns (DECAF Cor. 3).
+        R = A if rule == 'cf' else set()
+        tied = lambda v: v in S or any(not _dsep(v, s, {a for a in R if a != v}, par) for s in S)
         for y in Y:
             for u in par[y]:
-                if u not in A and tied(u):
+                if u not in R and tied(u):
                     mark(u, y)
             for c in kid[y]:
-                if c not in A and tied(c):
+                if c not in R and tied(c):
                     mark(y, c)
                 for sp in par[c]:
-                    if sp != y and sp not in A and tied(sp):
+                    if sp != y and sp not in R and tied(sp):
                         mark(sp, c)
     else:
         raise ValueError(f'unknown cut rule {rule!r} (use ftu, cf or dp)')
@@ -426,30 +412,31 @@ def fair_cuts(g, rule):
         return cut
     block = A if rule == 'cf' else set()
 
-    def joined(edges):
-        nb = {n['id']: [] for n in g['nodes']}
-        for e in edges:
-            nb[e['a']].append(e['b'])
-            nb[e['b']].append(e['a'])
-        k = 0
-        for s in S:
-            seen, st = {s}, [s]
-            while st:
-                v = st.pop()
-                for w in nb[v]:
-                    if w not in seen:
-                        seen.add(w)
-                        if w not in block:
-                            st.append(w)
-            k += sum(1 for y in Y if y != s and y in seen)
-        return k
-    kept = [e for e in dr if e['id'] not in cut]
-    base = joined(kept)
+    nb = {n['id']: [] for n in g['nodes']}
+
+    def link(e):
+        nb[e['a']].append(e['b'])
+        nb[e['b']].append(e['a'])
+
+    def reach(src):
+        # Nodes a route from src can pass through: src, and every node reached without crossing a blocker.
+        seen, st = set(src), list(src)
+        while st:
+            for w in nb[st.pop()]:
+                if w not in seen and w not in block:
+                    seen.add(w)
+                    st.append(w)
+        return seen
+    for e in dr:
+        if e['id'] not in cut:
+            link(e)
+    # Strongest first; A - B is dropped if one end already reaches S and the other Y through kept edges.
     for e in sorted(und, key=lambda e: (-e['strength'], e['id'])):
-        if joined(kept + [e]) > base:
+        fs, fy = reach(S), reach(Y)
+        if (e['a'] in fs and e['b'] in fy) or (e['b'] in fs and e['a'] in fy):
             cut.add(e['id'])
         else:
-            kept.append(e)
+            link(e)
     return cut
 
 
