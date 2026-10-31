@@ -21,6 +21,7 @@
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#6250d6; --s8:#e34948;
   --seq-lo:#e9f0fb; --seq-hi:#104281; --seqp-lo:#86b6ef; --seqp-hi:#0d366b;
   --on-strong:#ffffff;
+  --rule-ftu:#d55e00; --rule-dp:#0072b2; --rule-cf:#009e73;
   --font-ui:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --font-display:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
@@ -36,6 +37,7 @@
     --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
     --seq-lo:#1b232e; --seq-hi:#7fb3f0; --seqp-lo:#184f95; --seqp-hi:#cde2fb;
     --on-strong:#0b1020;
+    --rule-ftu:#f0884a; --rule-dp:#56b4e9; --rule-cf:#2cc495;
     color-scheme:dark;
   }
 }
@@ -49,6 +51,7 @@
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
   --seq-lo:#1b232e; --seq-hi:#7fb3f0; --seqp-lo:#184f95; --seqp-hi:#cde2fb;
   --on-strong:#0b1020;
+  --rule-ftu:#f0884a; --rule-dp:#56b4e9; --rule-cf:#2cc495;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -240,6 +243,37 @@ table.mlt tr.sec td{font:600 10.5px var(--font-ui);color:var(--muted);text-trans
 .swatches{display:flex;flex-wrap:wrap;gap:6px 12px;font:11.5px var(--font-mono);color:var(--ink-2)}
 .swatches i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 
+/* cut-strength curves */
+.center-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.curves{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.curves-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.curves-head h2{margin-right:4px}
+.curves .chk{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.cv-res{display:inline-flex;align-items:center;gap:8px}
+.cv-res input{width:150px;accent-color:var(--accent)}
+.cv-res .mono{font-size:12px;color:var(--ink-2);min-width:58px}
+.curves select{border:1px solid var(--line-2);background:var(--panel);border-radius:6px;padding:3px 6px;font-size:12.5px}
+#cv-status{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cv-legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:12.5px;color:var(--ink-2)}
+.cv-key{display:inline-flex;align-items:center;gap:6px}
+.cv-key svg{flex:none}
+.cv-key .mono{font-size:11.5px;color:var(--muted)}
+.cv-charts{display:flex;flex-wrap:wrap;gap:12px}
+.cv-chart{margin:0;min-width:0}
+.cv-chart figcaption{font-size:12.5px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin-bottom:4px}
+.cv-chart figcaption .mono{font-size:11px;color:var(--muted)}
+.cv-sub{flex-basis:100%;font-size:11.5px;line-height:1.35;color:var(--muted);min-height:2.7em}
+@media (max-width:539px){.cv-sub{min-height:0}}
+.cv-chart svg{display:block;max-width:100%;height:auto;overflow:visible}
+.cv-grid{stroke:var(--grid);stroke-width:1}
+.cv-zero{stroke:var(--line-2);stroke-width:1}
+.cv-tick{font:10.5px var(--font-mono);fill:var(--muted)}
+.cv-axis{font:11px var(--font-ui);fill:var(--muted)}
+.cv-cross{stroke:var(--ink-2);stroke-width:1;stroke-dasharray:3 3}
+.cv-hit{cursor:crosshair}
+footer.credit{margin-top:14px;font-size:12px;color:var(--muted);text-align:center}
+footer.credit a{color:inherit}
+
 /* table strip */
 .strip{margin-top:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
 .strip-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
@@ -347,6 +381,7 @@ details.codes td { padding: 2px 6px; }
 <main class="bench">
   <aside class="pane inspector" id="inspector" aria-label="Inspector"></aside>
 
+  <div class="center-col">
   <section class="pane canvas-pane">
     <div class="tools">
       <button class="btn" id="addnode">Add node</button>
@@ -377,6 +412,22 @@ details.codes td { padding: 2px 6px; }
     <div class="status" id="status"></div>
   </section>
 
+  <section class="pane curves" id="curves" aria-label="Cut strength curves">
+    <div class="curves-head">
+      <h2>Cut strength</h2>
+      <label class="chk" title="Redraw the curves after every change to the graph, at most once a second"><input type="checkbox" id="cv-live" checked> Live update</label>
+      <label class="cv-res" title="How many cut strengths to sample, evenly spaced from 0 to 1"><span class="lbl">Resolution</span><input type="range" id="cv-res" min="2" max="21" step="1" value="5"><span class="mono" id="cv-res-v">5 points</span></label>
+      <label class="inline"><span class="lbl">Rows</span> <select id="cv-rows"><option value="5000">5,000</option><option value="20000">20,000</option><option value="50000">50,000</option></select></label>
+      <label class="inline"><span class="lbl">Seeds</span> <select id="cv-seeds"><option value="1">1</option><option value="3">3</option><option value="5">5</option></select></label>
+      <button class="btn" id="cv-run">Run</button>
+      <span id="cv-status" role="status"></span>
+    </div>
+    <div class="cv-legend" id="cv-legend"></div>
+    <div class="cv-charts" id="cv-charts"></div>
+    <p class="note" id="cv-note"></p>
+  </section>
+  </div>
+
   <section class="pane analysis" aria-label="Analysis">
     <div class="tabs" role="tablist" id="tabs">
       <button role="tab" data-tab="dep">Dependence</button>
@@ -394,6 +445,8 @@ details.codes td { padding: 2px 6px; }
   <div class="strip-head"><h2>Generated table</h2><span class="note" id="strip-note"></span></div>
   <div class="tablewrap" id="preview"></div>
 </section>
+
+<footer class="credit">Steven Golob · <a href="https://github.com/steveng9/Causal-Synthetic-Data-Generator">source on GitHub</a></footer>
 
 <div id="tip" role="tooltip"></div>
 <div id="toast" role="status" aria-live="polite"></div>
@@ -862,13 +915,16 @@ function modSpec(e) {
 // partial correlation). Directed edges add the parent's *observed* value score into the
 // child's z (strength ~ share of variance), so the CSV keeps the graph's conditional
 // independences. z is rank-mapped onto the node's own marginal, which therefore matches exactly.
-function sampleData(n, seed) {
+// opt.cut overrides the shown rule's cuts; opt.strength < 1 shuffles the cut parents on that share
+// of rows only (the same rows for all of a child's cut parents), as csdg.sample(cut_strength=) does;
+// opt.lite skips what only the counterfactual tab reads.
+function sampleData(n, seed, opt = {}) {
   const st = structure();
   if (st.errors.length) return {error: st.errors[0].msg};
   const rnd = mulberry32((seed >>> 0) || 1), gauss = makeGauss(rnd);
-  const codes = {}, vals = {}, u = {}, score = {}, bands = {}, warnings = [], spec = {}, blocks = [], blockOf = {}, zsort = {}, keep = n <= CF_MAX;
+  const codes = {}, vals = {}, u = {}, score = {}, bands = {}, warnings = [], spec = {}, blocks = [], blockOf = {}, zsort = {}, keep = !opt.lite && n <= CF_MAX;
   // Snipped edges (DECAF's biased_edges): the child sees the parent's column shuffled across rows.
-  const cut = cutView && applyCut ? fairCuts(cutView) : new Set();
+  const cut = opt.cut || (cutView && applyCut ? fairCuts(cutView) : new Set()), cs = opt.strength == null ? 1 : opt.strength;
   const shuffled = (e, a) => {
     const r2 = mulberry32((((seed >>> 0) || 1) ^ Math.imul(e.id, 2654435761)) >>> 0), pm = Uint32Array.from({length: n}, (_, i) => i);
     for (let i = n - 1; i > 0; i--) { const j = Math.floor(r2() * (i + 1)), t = pm[i]; pm[i] = pm[j]; pm[j] = t; }
@@ -911,7 +967,13 @@ function sampleData(n, seed) {
       const pe = G.edges.filter(e => e.kind === 'dir' && e.b === id);
       const tot = pe.reduce((s, e) => s + e.strength, 0), sc = tot > 0.97 ? 0.97 / tot : 1;
       if (tot > 0.97) warnings.push(`${nd.name}: incoming strengths add to ${tot.toFixed(2)}; scaled to 0.97.`);
-      const ws = pe.map(e => e.sign * Math.sqrt(e.strength * sc)), ps = pe.map(e => cut.has(e.id) ? shuffled(e, score[e.a]) : score[e.a]), md = pe.map(modSpec);
+      const ws = pe.map(e => e.sign * Math.sqrt(e.strength * sc)), md = pe.map(modSpec);
+      let ps = pe.map(e => cut.has(e.id) ? shuffled(e, score[e.a]) : score[e.a]);
+      if (cs < 1 && pe.some(e => cut.has(e.id))) {
+        const kr = mulberry32((((seed >>> 0) || 1) ^ ((Math.imul(id, 2246822519) + 0x5bd1e995) >>> 0)) >>> 0 || 1), kp = new Uint8Array(n);
+        for (let r = 0; r < n; r++) kp[r] = kr() >= cs ? 1 : 0;
+        ps = ps.map((q, p) => cut.has(pe[p].id) ? Float64Array.from(q, (v, r) => kp[r] ? score[pe[p].a][r] : v) : q);
+      }
       const c = Math.sqrt(Math.max(0.03, 1 - tot * sc));
       // A snipped parent's shuffled push is fixed per row: switching that parent in a counterfactual no longer moves this node.
       const live = pe.map(e => !cut.has(e.id));
@@ -1502,7 +1564,7 @@ function regenerate() {
   if (ci.x != null && !dNode(ci.x)) ci.x = null;
   if (ci.y != null && !dNode(ci.y)) ci.y = null;
   renderGraph(); renderStatus(); renderAnalysis(); renderPreview();
-  updateMeasure();
+  updateMeasure(); cvKick();
 }
 // Correlation of the hidden normal scores for every edge, measured on the first 20,000 rows.
 function realizedCorr(D) {
@@ -1535,7 +1597,7 @@ function realized(e) {
   return rc && rc.a === e.a && rc.b === e.b ? rc.r : null;
 }
 const flipped = (e, r) => r != null && e.strength > 0 && Math.sign(r) !== e.sign && Math.abs(r) >= 0.05;
-function changed() { save(); descCache.clear(); renderGraph(); renderInspector(); renderStatus(); syncTop(); scheduleSample(); }
+function changed() { save(); descCache.clear(); renderGraph(); renderInspector(); renderStatus(); syncTop(); scheduleSample(); cvKick(); }
 function exportCols() {
   const used = new Set();
   return observed().map(n => { let nm = n.name, i = 2; while (used.has(nm)) nm = n.name + '_' + i++; used.add(nm); return {n, col: nm}; });
@@ -2657,14 +2719,345 @@ function renderPreview() {
   $('#strip-note').textContent = `First ${rows} of ${DATA.N.toLocaleString()} rows · ${cols.length} columns${hid ? ` · ${hid} hidden node${hid > 1 ? 's' : ''} left out` : ''}. Categorical values are codes 0…k−1.`;
 }
 
+/* ---------------- cut-strength curves ---------------- */
+// Each point is one release: the graph sampled with a rule's edges cut on that share of rows,
+// scored on a fresh uncut table (the world). A recipient fits a linear model for the first outcome
+// on every released column, S included; an attacker fits one for each protected column from the
+// unprotected ones. Cuts use the recorded columns only, so a hidden node stays in both tables.
+// The points are computed in Web Workers built from these same functions.
+function curveRun(t, cache) {
+  const g0 = G; G = t.g;
+  try {
+    if (cache.key !== t.gkey) { cache.clear(); cache.key = t.gkey; }
+    let W = cache.get(t.wseed);
+    if (!W) { W = sampleData(t.rows, t.wseed, {cut: new Set(), lite: true}); cache.set(t.wseed, W); }
+    const D = sampleData(t.rows, t.rseed, {cut: new Set(t.p > 0 ? t.cut : []), strength: t.p, lite: true});
+    if (W.error || D.error) return {error: W.error || D.error};
+    return curveMetrics(t.g.nodes, D, W);
+  } finally { G = g0; }
+}
+function curveMetrics(nodes, D, W) {
+  const vis = nodes.filter(n => n.role !== 'hidden'), S = vis.filter(n => n.role === 'protected'), y = vis.find(n => n.role === 'outcome');
+  const target = (T, n, l) => n.type === 'cat' ? Float64Array.from(T.codes[n.id], c => c === l ? 1 : 0) : T.vals[n.id];
+  const cls = y.type === 'cat', pos = cls ? posLevel(y) : 0;
+  const p = curveFit(vis.filter(n => n.role !== 'outcome'), D, W, target(D, y, pos), cls);
+  let gap = 0, inf = null;
+  for (const s of S) gap = Math.max(gap, curveGap(p, W, s));
+  const fa = vis.filter(n => n.role !== 'protected');
+  for (const s of S) {
+    let sk = 0;
+    if (fa.length) {
+      // One-vs-rest per level; past 8 levels, the 7 most common in the release and one pooled group.
+      let grp = null, levs = [null];
+      if (s.type === 'cat') {
+        const cnt = new Float64Array(s.card); for (const c of D.codes[s.id]) cnt[c]++;
+        const top = Array.from({length: s.card}, (_, l) => l).sort((a, b) => cnt[b] - cnt[a] || a - b).slice(0, s.card > 8 ? 7 : s.card);
+        grp = new Int32Array(s.card).fill(top.length); top.forEach((l, i) => { grp[l] = i; });
+        levs = s.card === 2 ? [grp[1]] : Array.from({length: s.card > 8 ? 8 : s.card}, (_, i) => i);
+      }
+      const tg = (T, g) => Float64Array.from(T.codes[s.id], c => grp[c] === g ? 1 : 0);
+      const P = levs.map(g => curveFit(fa, D, W, g == null ? D.vals[s.id] : tg(D, g), g != null));
+      if (levs.length > 2) for (let r = 0; r < W.N; r++) { let t = 0; for (const q of P) t += q[r]; if (t > 0) for (const q of P) q[r] /= t; }
+      sk = curveSkill(P, levs.map(g => g == null ? W.vals[s.id] : tg(W, g)));
+    }
+    inf = inf == null ? sk : Math.max(inf, sk);
+  }
+  return {gap: cls ? gap * 100 : gap, inf: inf == null ? 0 : inf, util: curveSkill([p], [target(W, y, pos)])};
+}
+// Logistic regression by Newton steps with sklearn's default penalty (C = 1, intercept free), or least
+// squares for a continuous target. Categorical columns are one-hot, continuous ones standardized.
+// Returns the predictions on the world table W.
+function curveFit(feats, D, W, y, cls) {
+  // Sparse rows: each column adds one entry (its one-hot slot, or the standardized value), so a row
+  // touches F + 1 of the d coefficients and the Hessian costs F² per row, not d².
+  const enc = []; let d = 1;
+  for (const f of feats) {
+    if (f.type === 'cat') { enc.push({id: f.id, off: d - 1}); d += f.card - 1; continue; }
+    const v = D.vals[f.id]; let s = 0, s2 = 0;
+    for (let r = 0; r < D.N; r++) { s += v[r]; s2 += v[r] * v[r]; }
+    const mu = s / D.N, sd = Math.sqrt(Math.max(0, s2 / D.N - mu * mu));
+    if (sd > 1e-12) { enc.push({id: f.id, mu, sd, off: d}); d += 1; }
+  }
+  const F = enc.length, ix = new Int32Array(F + 1), vx = new Float64Array(F + 1);
+  const design = T => {
+    const n = T.N, I = new Int32Array(n * F), V = new Float64Array(n * F);
+    enc.forEach((e, f) => {
+      if (e.mu == null) { const c = T.codes[e.id]; for (let r = 0; r < n; r++) { I[r * F + f] = c[r] > 0 ? e.off + c[r] : -1; V[r * F + f] = 1; } }
+      else { const v = T.vals[e.id]; for (let r = 0; r < n; r++) { I[r * F + f] = e.off; V[r * F + f] = (v[r] - e.mu) / e.sd; } }
+    });
+    return {I, V};
+  };
+  const row = (X, r) => { let m = 1; ix[0] = 0; vx[0] = 1; for (let f = 0; f < F; f++) { const j = X.I[r * F + f]; if (j >= 0) { ix[m] = j; vx[m] = X.V[r * F + f]; m++; } } return m; };
+  const X = design(D), n = D.N, w = new Float64Array(d);
+  for (let it = 0; it < (cls ? 30 : 1); it++) {
+    const H = new Float64Array(d * d), gr = new Float64Array(d);
+    for (let r = 0; r < n; r++) {
+      const m = row(X, r); let s = 0;
+      for (let q = 0; q < m; q++) s += vx[q] * w[ix[q]];
+      const p = cls ? 1 / (1 + Math.exp(-s)) : s, e = p - y[r], h = cls ? Math.max(p * (1 - p), 1e-10) : 1;
+      for (let a = 0; a < m; a++) {
+        const ja = ix[a], hv = h * vx[a]; gr[ja] += e * vx[a];
+        for (let b = 0; b <= a; b++) H[ja * d + ix[b]] += hv * vx[b];
+      }
+    }
+    for (let j = 1; j < d; j++) { gr[j] += w[j]; H[j * d + j] += 1; }
+    H[0] += 1e-9;
+    for (let j = 0; j < d; j++) for (let k = 0; k < j; k++) H[k * d + j] = H[j * d + k];
+    const st = curveSolve(H, gr, d);
+    let mx = 0; for (let j = 0; j < d; j++) mx = Math.max(mx, Math.abs(st[j]));
+    const f = mx > 8 ? 8 / mx : 1;
+    for (let j = 0; j < d; j++) w[j] -= f * st[j];
+    if (mx < 1e-7) break;
+  }
+  const XW = design(W), out = new Float64Array(W.N);
+  for (let r = 0; r < W.N; r++) { const m = row(XW, r); let s = 0; for (let q = 0; q < m; q++) s += vx[q] * w[ix[q]]; out[r] = cls ? 1 / (1 + Math.exp(-s)) : s; }
+  return out;
+}
+function curveSolve(A, b, d) {
+  const L = new Float64Array(d * d), x = Float64Array.from(b);
+  for (let i = 0; i < d; i++) for (let j = 0; j <= i; j++) {
+    let s = A[i * d + j];
+    for (let k = 0; k < j; k++) s -= L[i * d + k] * L[j * d + k];
+    if (i === j) L[i * d + i] = Math.sqrt(Math.max(s, 1e-12)); else L[i * d + j] = s / L[j * d + j];
+  }
+  for (let i = 0; i < d; i++) { let s = x[i]; for (let k = 0; k < i; k++) s -= L[i * d + k] * x[k]; x[i] = s / L[i * d + i]; }
+  for (let i = d - 1; i >= 0; i--) { let s = x[i]; for (let k = i + 1; k < d; k++) s -= L[k * d + i] * x[k]; x[i] = s / L[i * d + i]; }
+  return x;
+}
+// Largest gap in mean prediction between the groups of s (continuous s: quantile bins) with 20+ rows.
+function curveGap(p, W, s) {
+  const k = s.type === 'cat' ? s.card : MI_BINS, cnt = new Float64Array(k), sum = new Float64Array(k);
+  for (let r = 0; r < W.N; r++) { const g = s.type === 'cat' ? W.codes[s.id][r] : Math.min(MI_BINS - 1, Math.floor(W.u[s.id][r] * MI_BINS)); cnt[g]++; sum[g] += p[r]; }
+  const m = []; for (let g = 0; g < k; g++) if (cnt[g] >= 20) m.push(sum[g] / cnt[g]);
+  return m.length > 1 ? Math.max(...m) - Math.min(...m) : 0;
+}
+// 1 − squared error / squared error of predicting the mean: Brier skill for 0/1 targets, R² otherwise.
+function curveSkill(P, Y) {
+  let se = 0, st = 0;
+  P.forEach((p, q) => { const y = Y[q], n = y.length; let mu = 0; for (let r = 0; r < n; r++) mu += y[r]; mu /= n; for (let r = 0; r < n; r++) { se += (p[r] - y[r]) ** 2; st += (y[r] - mu) ** 2; } });
+  return st > 0 ? 1 - se / st : 0;
+}
+function curveWorkerSrc() {
+  const fns = [mulberry32, makeGauss, PhiInv, cholesky, lamMax, invert, catWeights, shuffleFor, catBands, shapeInv, posLevel, structure, modOn, modSpec, sampleData,
+    curveRun, curveMetrics, curveFit, curveSolve, curveGap, curveSkill];
+  return `'use strict';
+let G = null, SHAPE_CDF = null;
+const cutView = '', applyCut = false, CF_MAX = ${CF_MAX}, MI_BINS = ${MI_BINS}, cache = new Map();
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x)), phi = x => Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI), nodeById = id => G.nodes.find(n => n.id === id);
+${fns.map(f => f.toString()).join('\n')}
+self.onmessage = ev => {
+  const t = ev.data;
+  if (t.init) { SHAPE_CDF = t.init; return; }
+  let r; try { r = curveRun(t, cache); } catch (e) { r = {error: String(e && e.message || e)}; }
+  self.postMessage({gen: t.gen, i: t.i, r});
+};`;
+}
+function visibleCuts(rule) {
+  const hid = new Set(G.nodes.filter(n => n.role === 'hidden').map(n => n.id)), g0 = G;
+  G = {nodes: g0.nodes.filter(n => !hid.has(n.id)), edges: g0.edges.filter(e => !hid.has(e.a) && !hid.has(e.b))};
+  try { return [...fairCuts(rule)].sort((a, b) => a - b); } finally { G = g0; }
+}
+
+const CV_RULES = ['cf', 'dp', 'ftu'];   // drawing order, as in the PDF: wide CF underneath, thin FTU on top
+const CV_STYLE = {cf: {w: 5, o: 0.42, r: 4.5}, dp: {w: 2.4, o: 0.9, r: 3.2}, ftu: {w: 1.3, o: 1, r: 2.4}};
+const curves = {live: true, res: 5, rows: 20000, seeds: 1, key: null, gen: 0, job: null, shown: null, pool: null, inline: false, timer: 0, last: -1e9, stale: false, hover: null};
+try {
+  const o = JSON.parse(localStorage.getItem('csdg-curves') || '{}');
+  if (typeof o.live === 'boolean') curves.live = o.live;
+  if (o.res >= 2 && o.res <= 21) curves.res = Math.round(o.res);
+  if ([5000, 20000, 50000].includes(o.rows)) curves.rows = o.rows;
+  if ([1, 3, 5].includes(o.seeds)) curves.seeds = o.seeds;
+} catch (e) {}
+const cvSave = () => { try { localStorage.setItem('csdg-curves', JSON.stringify({live: curves.live, res: curves.res, rows: curves.rows, seeds: curves.seeds})); } catch (e) {} };
+const cvKey = () => JSON.stringify({n: G.nodes.map(({x, y, ...r}) => r), e: G.edges, res: curves.res, rows: curves.rows, seeds: curves.seeds, SEED});
+function cvHash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619); return h >>> 0; }
+// Endpoints first, then the midpoint of the widest remaining gap, so a coarse curve shows up early.
+function cvOrder(R) {
+  const out = [0, R - 1];
+  while (out.length < R) {
+    const s = [...out].sort((a, b) => a - b); let bi = 0;
+    for (let j = 1; j + 1 < s.length; j++) if (s[j + 1] - s[j] > s[bi + 1] - s[bi]) bi = j;
+    out.push((s[bi] + s[bi + 1]) >> 1);
+  }
+  return out;
+}
+function cvPool() {
+  if (curves.pool || curves.inline) return curves.pool || [];
+  try {
+    const url = URL.createObjectURL(new Blob([curveWorkerSrc()], {type: 'text/javascript'}));
+    curves.pool = Array.from({length: clamp((navigator.hardwareConcurrency || 4) - 1, 1, 9)}, () => {
+      const w = new Worker(url);
+      w.onmessage = ev => { w.ok = true; w.busy = false; const m = ev.data, job = curves.job; if (job && m.gen === job.gen) { cvTake(job, m.i, m.r); cvFeed(w, job); } };
+      w.onerror = ev => { if (ev.preventDefault) ev.preventDefault(); if (!w.ok) cvFallback(); };
+      w.postMessage({init: SHAPE_CDF});
+      return w;
+    });
+  } catch (e) { curves.inline = true; curves.pool = null; }
+  return curves.pool || [];
+}
+// No workers here (blocked or failing to load): compute the points on the page itself, one per tick.
+function cvFallback() {
+  if (curves.inline) return;
+  if (curves.pool) for (const w of curves.pool) w.terminate();
+  curves.pool = null; curves.inline = true; curves.key = null; cvStart();
+}
+function cvFeed(w, job) {
+  if (job !== curves.job || job.next >= job.tasks.length) return;
+  const i = job.next++, t = job.tasks[i]; w.busy = true;
+  w.postMessage({gen: job.gen, i, g: job.g, gkey: job.gkey, rows: job.rows, rseed: SEED + t.s, wseed: SEED + 1000 + t.s, cut: job.sets.get(t.set) || [], p: job.ps[t.pi]});
+}
+function cvInline(job) {
+  if (job !== curves.job || job.next >= job.tasks.length) return;
+  const i = job.next++, t = job.tasks[i], cache = curves.cache || (curves.cache = new Map());
+  let r; try { r = curveRun({g: job.g, gkey: job.gkey, rows: job.rows, rseed: SEED + t.s, wseed: SEED + 1000 + t.s, cut: job.sets.get(t.set) || [], p: job.ps[t.pi]}, cache); } catch (e) { r = {error: String(e && e.message || e)}; }
+  cvTake(job, i, r);
+  setTimeout(() => cvInline(job), 0);
+}
+function cvTake(job, i, r) {
+  const t = job.tasks[i];
+  if (r.error) job.error = r.error;
+  else { const k = t.set + '@' + t.pi; (job.out.get(k) || job.out.set(k, []).get(k)).push(r); }
+  if (++job.done === job.tasks.length) { job.ms = performance.now() - job.t0; curves.shown = job; }
+  if (!curves.raf) curves.raf = requestAnimationFrame(() => { curves.raf = 0; cvDraw(); });
+}
+function cvKick() {
+  if (!$('#curves')) return;
+  if (cvKey() === curves.key) return;
+  if (!curves.live) { curves.stale = true; cvStatus(); return; }
+  clearTimeout(curves.timer);
+  curves.timer = setTimeout(cvStart, Math.max(250, curves.last + 1000 - performance.now()));
+}
+function cvStart() {
+  clearTimeout(curves.timer);
+  curves.key = cvKey(); curves.stale = false; curves.last = performance.now();
+  if (curves.pool && curves.pool.some(w => w.busy)) { for (const w of curves.pool) w.terminate(); curves.pool = null; }
+  const vis = G.nodes.filter(n => n.role !== 'hidden');
+  let msg = '';
+  if (structure().errors.length) msg = 'Fix the red edges in the graph to draw the curves.';
+  else if (!vis.some(n => n.role === 'protected') || !vis.some(n => n.role === 'outcome')) msg = 'Mark at least one recorded node as <b>Protected</b> and one as <b>Outcome</b> to draw the curves.';
+  if (msg) { curves.job = curves.shown = null; curves.msg = msg; cvDraw(); return; }
+  curves.msg = '';
+  const cuts = {}, sets = new Map();
+  for (const r of CV_RULES) { cuts[r] = visibleCuts(r); if (cuts[r].length) sets.set(cuts[r].join(','), cuts[r]); }
+  const R = curves.res, ps = Array.from({length: R}, (_, i) => i / (R - 1)), tasks = [];
+  for (const pi of cvOrder(R)) for (let s = 0; s < curves.seeds; s++) {
+    if (pi === 0) tasks.push({set: '', pi, s}); else for (const k of sets.keys()) tasks.push({set: k, pi, s});
+  }
+  const job = curves.job = {gen: ++curves.gen, g: JSON.parse(JSON.stringify(G)), gkey: cvHash(curves.key), rows: curves.rows, seeds: curves.seeds,
+    ps, cuts, sets, tasks, next: 0, done: 0, out: new Map(), t0: performance.now(), workers: 0};
+  const pool = cvPool();
+  job.workers = pool.length;
+  if (pool.length) for (const w of pool) cvFeed(w, job); else setTimeout(() => cvInline(job), 0);
+  cvDraw();
+}
+// Mean over seeds at each strength for one rule; a point appears once all its seeds are in.
+function cvSeries(job, rule) {
+  const set = job.cuts[rule].join(',');
+  return job.ps.map((p, pi) => {
+    const a = job.out.get((pi === 0 || !set ? '' : set) + '@' + (set ? pi : 0));
+    if (!a || a.length < job.seeds) return null;
+    const m = k => a.reduce((s, r) => s + r[k], 0) / a.length;
+    return {p, gap: m('gap'), inf: m('inf'), util: m('util')};
+  });
+}
+function cvTicks(lo, hi, n) {
+  const span = hi - lo || 1, step0 = span / n, mag = 10 ** Math.floor(Math.log10(step0)), f = step0 / mag;
+  const step = (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * mag, out = [];
+  for (let v = Math.ceil(lo / step - 1e-9) * step; v <= hi + 1e-9 * span; v += step) out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+  return out;
+}
+function cvStatus() {
+  const el = $('#cv-status'), job = curves.job; if (!el) return;
+  const run = $('#cv-run');
+  run.classList.toggle('primary', curves.stale || !curves.live);
+  if (curves.stale) { el.innerHTML = '<span class="stale">Graph changed.</span> Live update is off; press Run.'; return; }
+  if (!job) { el.textContent = ''; return; }
+  const where = job.workers ? `on ${job.workers} worker${job.workers > 1 ? 's' : ''}` : 'on the page (no workers)';
+  el.textContent = job.error ? `Stopped: ${job.error}` : job.done < job.tasks.length ? `Sampling ${job.done} of ${job.tasks.length} releases ${where}…` : `${job.tasks.length} releases in ${(job.ms / 1000).toFixed(1)} s ${where}`;
+}
+function cvDraw() {
+  const box = $('#cv-charts'); if (!box) return;
+  cvStatus();
+  const job = curves.job;
+  if (curves.msg) { box.innerHTML = `<p class="note">${curves.msg}</p>`; $('#cv-legend').innerHTML = ''; $('#cv-note').innerHTML = ''; return; }
+  if (!job) return;
+  const ghost = curves.shown && curves.shown !== job && job.done < job.tasks.length ? curves.shown : null;
+  const nm = id => { const n = job.g.nodes.find(q => q.id === id); return n ? esc(n.name) : '?'; };
+  const edgeTxt = ids => ids.map(id => { const e = job.g.edges.find(q => q.id === id); return e ? `${nm(e.a)}${e.kind === 'und' ? '—' : '→'}${nm(e.b)}` : ''; }).join(', ');
+  $('#cv-legend').innerHTML = ['ftu', 'cf', 'dp'].map(r => `<span class="cv-key"><svg width="26" height="12" aria-hidden="true"><line x1="2" y1="6" x2="24" y2="6" stroke="var(--rule-${r})" stroke-width="${CV_STYLE[r].w}" stroke-opacity="${CV_STYLE[r].o}" stroke-linecap="round"/></svg><b>${CUT_NAME[r]}</b> <span class="mono">${job.cuts[r].length ? edgeTxt(job.cuts[r]) : 'cuts nothing'}</span></span>`).join('');
+  const y = job.g.nodes.find(n => n.role === 'outcome'), S = job.g.nodes.filter(n => n.role === 'protected');
+  const yc = y.type === 'cat', sc = S.every(s => s.type === 'cat');
+  const M = [
+    {k: 'gap', t: 'Fairness gap', u: yc ? 'pp' : `${esc(y.name)} units`, s: yc ? `gap in mean predicted P(${esc(y.name)} = ${posLevel(y)}) between S groups` : `gap in mean predicted ${esc(y.name)} between S groups`, f: v => v.toFixed(yc ? 1 : 2) + (yc ? ' pp' : '')},
+    {k: 'inf', t: 'S inference', u: sc ? 'Brier skill' : 'skill', s: 'attacker predicts S from the other released columns', f: v => v.toFixed(3)},
+    {k: 'util', t: 'Utility', u: yc ? 'Brier skill' : 'R²', s: `recipient's model for ${esc(y.name)}`, f: v => v.toFixed(3)}
+  ];
+  const ser = {}, gser = {};
+  for (const r of CV_RULES) { ser[r] = cvSeries(job, r); if (ghost) gser[r] = cvSeries(ghost, r); }
+  const cols = box.clientWidth >= 540 ? 3 : 1, W = Math.max(170, Math.floor((box.clientWidth - 12 * (cols - 1)) / cols)), H = cols === 3 ? 180 : 200;
+  const L = 40, Rm = 10, T = 8, B = 30, pw = W - L - Rm, ph = H - T - B, X = p => L + p * pw;
+  box.innerHTML = M.map(m => {
+    const vals = [];
+    for (const r of CV_RULES) for (const a of [ser[r], gser[r] || []]) for (const q of a) if (q) vals.push(q[m.k]);
+    let lo = Math.min(0, ...vals), hi = Math.max(...vals, m.k === 'gap' ? 1 : 0.05);
+    if (!vals.length) { lo = 0; hi = m.k === 'gap' ? 10 : 1; }
+    hi += (hi - lo) * 0.08;
+    const Yp = v => T + ph - (v - lo) / (hi - lo) * ph, yt = cvTicks(lo, hi, 4);
+    let g = yt.map(v => `<line x1="${L}" x2="${L + pw}" y1="${Yp(v).toFixed(1)}" y2="${Yp(v).toFixed(1)}" class="${v === 0 ? 'cv-zero' : 'cv-grid'}"/><text x="${L - 6}" y="${(Yp(v) + 3.5).toFixed(1)}" text-anchor="end" class="cv-tick">${+v.toFixed(6)}</text>`).join('');
+    g += [0, 0.25, 0.5, 0.75, 1].map(p => `<text x="${X(p).toFixed(1)}" y="${T + ph + 15}" text-anchor="middle" class="cv-tick">${p}</text>`).join('');
+    g += `<text x="${L + pw / 2}" y="${H - 3}" text-anchor="middle" class="cv-axis">cut strength</text>`;
+    const line = (a, r, op) => {
+      const pts = a.filter(Boolean); if (!pts.length) return '';
+      const st = CV_STYLE[r], d = pts.map((q, i) => `${i ? 'L' : 'M'}${X(q.p).toFixed(1)},${Yp(q[m.k]).toFixed(1)}`).join('');
+      return `<path d="${d}" fill="none" stroke="var(--rule-${r})" stroke-width="${st.w}" stroke-opacity="${st.o * op}" stroke-linejoin="round" stroke-linecap="round"/>` +
+        pts.map(q => `<circle cx="${X(q.p).toFixed(1)}" cy="${Yp(q[m.k]).toFixed(1)}" r="${st.r}" fill="var(--rule-${r})" fill-opacity="${Math.min(1, st.o + 0.2) * op}" stroke="var(--panel)" stroke-width="1.5"/>`).join('');
+    };
+    if (ghost) for (const r of CV_RULES) g += line(gser[r], r, 0.3);
+    for (const r of CV_RULES) g += line(ser[r], r, 1);
+    const hp = curves.hover;
+    if (hp != null && hp < job.ps.length) g += `<line x1="${X(job.ps[hp]).toFixed(1)}" x2="${X(job.ps[hp]).toFixed(1)}" y1="${T}" y2="${T + ph}" class="cv-cross"/>`;
+    g += `<rect x="${L}" y="${T}" width="${pw}" height="${ph}" fill="transparent" class="cv-hit" data-m="${m.k}"/>`;
+    return `<figure class="cv-chart" style="flex:1 1 ${W}px"><figcaption><b>${m.t}</b> <span class="mono">${m.u}</span><span class="cv-sub">${m.s}</span></figcaption>
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.t} against cut strength for FTU, CF and DemPar">${g}</svg></figure>`;
+  }).join('');
+  for (const hit of box.querySelectorAll('.cv-hit')) {
+    const m = M.find(q => q.k === hit.dataset.m);
+    hit.addEventListener('pointermove', ev => {
+      const rc = hit.getBoundingClientRect(), p = clamp((ev.clientX - rc.left) / rc.width, 0, 1), pi = Math.round(p * (job.ps.length - 1));
+      if (curves.hover !== pi) { curves.hover = pi; cvDraw(); }
+      showTip(ev, `cut strength ${job.ps[pi].toFixed(3).replace(/0+$/, '').replace(/\.$/, '')}<br>${['ftu', 'cf', 'dp'].map(r => { const q = ser[r][pi]; return `${CUT_NAME[r]}: ${q ? m.f(q[m.k]) : '…'}`; }).join('<br>')}`);
+    });
+    hit.addEventListener('pointerleave', () => { curves.hover = null; hideTip(); cvDraw(); });
+  }
+  const und = [...job.sets.values()].some(ids => ids.some(id => { const e = job.g.edges.find(q => q.id === id); return e && e.kind === 'und'; }));
+  const hid = job.g.nodes.some(n => n.role === 'hidden');
+  $('#cv-note').innerHTML = `Each point is one release: the graph sampled with the rule's edges cut on that share of rows (a cut parent is shuffled across those rows before its child is drawn). ` +
+    `The recipient fits ${yc ? 'logistic' : 'linear'} regression for ${esc(y.name)} on every released column, S included; the attacker fits one model per protected column from the unprotected columns. ` +
+    `Both are scored on a fresh uncut table drawn with seed ${SEED} + 1000. Brier skill is 1 − Brier score ÷ Brier score of always predicting the base rate, so 0 is no better than the base rate and 1 is perfect. ` +
+    `${S.length > 1 ? 'With several protected columns, the gap and S inference show the largest over them. ' : ''}${S.some(q => q.type === 'cat' && q.card > 8) ? 'For a protected column with more than 8 levels, the attacker predicts its 7 most common levels and pools the rest. ' : ''}${hid ? 'Cuts are worked out on the recorded columns only, so hidden nodes stay in both tables. ' : ''}${und ? 'A cut undirected edge is left out of the joint at every strength above 0. ' : ''}Rows and seeds here are separate from the table above.`;
+}
+function cvBind() {
+  const res = $('#cv-res'), live = $('#cv-live'), rows = $('#cv-rows'), seeds = $('#cv-seeds');
+  if (!res) return;
+  res.value = curves.res; live.checked = curves.live; rows.value = curves.rows; seeds.value = curves.seeds;
+  const showRes = () => { $('#cv-res-v').textContent = `${curves.res} points`; };
+  showRes();
+  res.addEventListener('input', () => { curves.res = +res.value; showRes(); cvSave(); cvKick(); });
+  live.addEventListener('change', () => { curves.live = live.checked; cvSave(); if (curves.live) cvKick(); else cvStatus(); });
+  rows.addEventListener('change', () => { curves.rows = +rows.value; cvSave(); cvKick(); });
+  seeds.addEventListener('change', () => { curves.seeds = +seeds.value; cvSave(); cvKick(); });
+  $('#cv-run').addEventListener('click', () => { curves.key = null; cvStart(); });
+  let rw = 0; window.addEventListener('resize', () => { cancelAnimationFrame(rw); rw = requestAnimationFrame(cvDraw); });
+}
+
 /* ---------------- boot ---------------- */
-const BOOT = new URLSearchParams(location.search), BOOT_EX = BOOT.get('example');
+const BOOT =new URLSearchParams(location.search), BOOT_EX = BOOT.get('example');
 if (BOOT_EX && (TEMPLATES[BOOT_EX] || isDsKey(BOOT_EX))) {
   restore(); if (isDsKey(BOOT_EX)) loadDs(BOOT_EX); else TEMPLATES[BOOT_EX]();
   if (+BOOT.get('rows') > 0) N = Math.round(+BOOT.get('rows')); if (+BOOT.get('seed') > 0) SEED = Math.round(+BOOT.get('seed'));
   save();
 } else if (!restore()) TEMPLATES.hiring();
-syncTop(); renderGraph(); renderInspector(); regenerate();
+syncTop(); renderGraph(); renderInspector(); cvBind(); regenerate();
 // A PCA at rest, so the embedding tab opens on a picture rather than an empty box.
 setTimeout(() => {
   if (!DATA || emb.result) return;

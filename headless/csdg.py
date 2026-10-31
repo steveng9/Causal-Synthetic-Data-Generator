@@ -459,7 +459,7 @@ def sample(g, rows=5000, seed=7, cut=None, hidden=False, return_warnings=False, 
 
     `cut` is a rule name ('ftu', 'cf', 'dp') or a set of edge ids to cut. `cut_strength` below 1
     shuffles the cut parents for that share of the rows only (the same rows for all of a child's
-    cut parents), as the experiments' partial cuts do. The page has no partial cut; 1 matches it."""
+    cut parents), as the experiments' partial cuts do. The page's cut strength curves use the same rows."""
     g = normalize(g)
     n = int(rows)
     nodes = {nd['id']: nd for nd in g['nodes']}

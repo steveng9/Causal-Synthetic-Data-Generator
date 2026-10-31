@@ -68,6 +68,20 @@ Undirected edges follow the MST rule instead: links are taken strongest first, a
 
 With **Apply to sample** ticked, the table is regenerated with the cut edges removed. A cut directed edge is removed the way DECAF removes it: when the child is drawn, the cut parent's column is shuffled across rows, so the child sees a value with the right distribution but no link to the row. Cut undirected links are removed from their block. With it unticked, the cuts are only drawn on the graph.
 
+### Cut strength curves
+
+The panel under the graph samples a release for each rule at several cut strengths and plots three numbers against strength, one line per rule (FTU, CF, DemPar). Cut strength is the share of rows on which the cut edges are snipped: at 0 the release is the uncut graph, at 1 every row is cut. These are the same three panels as `headless/small_graphs/small_graphs.pdf`.
+
+- **Fairness gap:** the difference in mean predicted P(Y = 1) between S groups, in percentage points (largest over the protected columns). The recipient fits logistic regression for Y on every released column, S included. A continuous Y uses least squares, and the gap is then in Y's units.
+- **S inference:** Brier skill of an attacker who fits logistic regression on the release to predict S from the unprotected columns. A protected column with more than 8 levels is reduced to its 7 most common levels plus one pooled group.
+- **Utility:** Brier skill of the recipient's model for Y (R² for a continuous Y).
+
+Both models are scored on a fresh uncut table (seed + 1000). Brier skill is 1 − Brier score ÷ Brier score of always predicting the base rate, so 0 means no better than the base rate. Cuts are worked out on the recorded columns only, so a hidden node stays in both tables.
+
+**Resolution** sets how many evenly spaced strengths to sample, from 2 (0 and 1) to 21. **Rows** and **Seeds** set the size of each release and how many seeds to average; they are separate from the table above. With **Live update** on, the curves are redrawn after each change to the graph, at most once a second. The points are computed in parallel Web Workers (up to 9), endpoints first, and the previous curves stay faded until the new ones arrive. Turn it off while editing a large graph, and press **Run** when ready. On the built-in examples a full redraw at 5 points takes about a second; the dataset graphs take a few seconds per release at 20,000 rows.
+
+With seed 1, 5 seeds and 20,000 rows, the panel reproduces the PDF's numbers to within 0.1 pp for the gap and 0.01 Brier skill for the other two.
+
 ### The analysis tabs
 
 - **Dependence.** A heatmap of mutual information (in bits, or normalized) between every pair of columns. A ring marks a direct edge, so a filled cell with no ring is dependence carried along a path. Below it, an **independence check** asks whether X ⊥ Y given Z. It compares what the graph says (d-separation, listing the open paths) with what the data says (conditional mutual information).
@@ -141,7 +155,7 @@ cols, data = csdg.sample(g, rows=5000, seed=1, cut=None, hidden=True)
 df = csdg.to_dataframe(cols, data)             # needs pandas
 ```
 
-Two options exist only in Python. `cut` also takes a set of edge ids, to cut edges of your choosing. `cut_strength=0.5` makes a partial cut: the cut parents are shuffled for that share of each child's rows only, the same rows for all of a child's cut parents. The page has no partial cut, so `check.py` covers only the default strength of 1.
+`cut` also takes a set of edge ids, to cut edges of your choosing (Python only). `cut_strength=0.5` makes a partial cut: the cut parents are shuffled for that share of each child's rows only, the same rows for all of a child's cut parents. The page's cut strength curves use the same partial cut and give byte-identical tables; `check.py` covers the default strength of 1.
 
 `python check.py` confirms the match: it samples 128 tables (every example, with no cut and with each of the three cuts) and compares them with hashes of the page's own output. After you change the sampler or an example in `index.html`, run `python export_from_page.py` (needs `gjs` or `node`). It runs the page's code without a browser and rewrites `examples/` and the hashes.
 
